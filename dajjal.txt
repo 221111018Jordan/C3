@@ -1,0 +1,128 @@
+import 'package:flutter/material.dart';
+
+class Card1 extends StatelessWidget {
+  Card1({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Online Shopping"), centerTitle: true),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: 'Category',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Accounts',
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: 60,
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(Icons.person, size: 50),
+                    Row(
+                      children: [
+                        Text(
+                          "Saldomu :",
+                          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "Value",
+                          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: Icon(Icons.add, size: 40),
+                      label: Text("TOP UP"),
+                    )
+                  ],
+                ),
+              ),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 2,
+                ),
+              ),
+            ),
+            SizedBox(height: 50),
+            Container(
+              height: 74,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 2,
+                ),
+              ),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    SizedBox(width: 8),
+                    _buildShopIconButton(Icons.food_bank, "Food Shop"),
+                    SizedBox(width: 8),
+                    _buildShopIconButton(Icons.shopping_bag, "Shopping Shop"),
+                    SizedBox(width: 8),
+                    _buildComingSoonCard("COMING SOON"),
+                    SizedBox(width: 8),
+                    _buildComingSoonCard("COMING SOON"),
+                    SizedBox(width: 8),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildShopIconButton(IconData icon, String label) {
+    return Column(
+      children: [
+        IconButton(
+          onPressed: () {},
+          icon: Icon(icon, size: 28),
+        ),
+        Text(
+          label,
+          style: TextStyle(fontSize: 8),
+        )
+      ],
+    );
+  }
+
+  Widget _buildComingSoonCard(String label) {
+    return Container(
+      width: 100,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.do_not_touch, size: 28),
+          SizedBox(height: 4),
+          Text(label, style: TextStyle(fontSize: 8)),
+        ],
+      ),
+    );
+  }
+}
