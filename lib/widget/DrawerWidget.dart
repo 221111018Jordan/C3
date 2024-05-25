@@ -1,11 +1,8 @@
-import 'dart:js';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/components/users.dart';
 import 'package:uas/pages/login_page.dart';
-import 'package:uas/pages_food.dart/WishList.dart';
 
 class DrawerWidget extends StatelessWidget {
   DrawerWidget({Key? key});

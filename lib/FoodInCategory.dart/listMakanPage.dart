@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/foods.dart';
 import 'package:uas/data/theme.dart';
-import 'package:uas/models/foodModel.dart';
 import 'package:uas/pages_food.dart/CartPage.dart';
 import 'package:uas/screens/detail.dart';
 

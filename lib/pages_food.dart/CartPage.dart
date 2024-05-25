@@ -36,7 +36,6 @@ class CartPage extends StatelessWidget {
               builder: (context, value, child) {
                 return Column(
                   children: value.CardList.asMap().entries.map((entry) {
-                    final index = entry.key;
                     final bread = entry.value;
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),

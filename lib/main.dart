@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/FoodInCategory.dart/listMakanPage.dart';
 import 'package:uas/components/users.dart';
+import 'package:uas/data/cartprovider.dart';
 import 'package:uas/data/foods.dart';
 import 'package:uas/data/theme.dart';
 import 'package:uas/pages_food.dart/CartPage.dart';
@@ -10,7 +11,6 @@ import 'package:uas/pages_food.dart/ItemPage.dart';
 import 'package:uas/pages/login_page.dart';
 import 'package:uas/pages_food.dart/WishList.dart';
 import 'package:uas/screens/buttonNavBar.dart';
-import 'package:uas/screens/homepage.dart';
 import 'package:uas/wallet/wallet.dart';
 
 void main() {
@@ -18,7 +18,8 @@ void main() {
     ChangeNotifierProvider(create: (context) => userListManager()),
     ChangeNotifierProvider(create: (context) => FoodListManager()),
     ChangeNotifierProvider(create: (context) => Wallet()),
-    ChangeNotifierProvider(create: (context) => themeManager())
+    ChangeNotifierProvider(create: (context) => themeManager()),
+    ChangeNotifierProvider(create: (context) => CartProvider()),
   ], child: const MyApp()));
 }
 

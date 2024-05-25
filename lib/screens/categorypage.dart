@@ -1,4 +1,6 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:uas/pages_casualshopping.dart/HomePageCasual.dart';
 import 'package:uas/widget/CategoriesWidget.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -82,8 +84,38 @@ class CategoryPage extends StatelessWidget {
               ),
             ),
           ),
+
+          SizedBox(
+            height: 5,
+          ),
+
+          Container(
+            child: CarouselSlider(
+              items: [1,2,3].map((e) {
+                return GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => HomePageCasual()
+                              )
+                              );
+
+                  } ,
+                  child: Container(
+                    width: double.infinity,
+                    height: 5,
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                  color: Colors.red,
+                  ) ,
+                  
+                );
+              }).toList(), 
+              
+              options: CarouselOptions(height: 300, autoPlay: true)),)
+        
         ],
       ),
+
       floatingActionButton: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),

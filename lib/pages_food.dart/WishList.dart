@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/foods.dart';
 import 'package:uas/screens/detail.dart';
-import 'package:uas/widget/CartBottomNavbar.dart';
 
 class WishList extends StatelessWidget {
   const WishList({super.key});

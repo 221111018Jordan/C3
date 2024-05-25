@@ -1,13 +1,9 @@
 // Di bagian import
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:uas/components/users.dart';
 import 'package:uas/pages/forgotpassword.dart';
 import 'package:uas/pages/register.dart';
-import 'package:uas/pages_food.dart/HomePageFood.dart';
 import 'package:uas/screens/buttonNavBar.dart';
-import 'package:uas/screens/homepage.dart';
 import 'package:uas/widget/CustomTextField.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/widget/customTextFieldEmail.dart';
