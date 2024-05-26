@@ -38,7 +38,6 @@ class WishList extends StatelessWidget {
                   builder: (context, value, child) {
                     return Column(
                       children: value.WishList.asMap().entries.map((entry) {
-                        final index = entry.key;
                         final wishlist = entry.value;
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),

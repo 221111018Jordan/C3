@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/cartprovider.dart';
-import 'package:uas/wallet/wallet.dart'; // Import CartProvider
+import 'package:uas/wallet/wallet.dart';
 
 class CartBottomNavbarCasual extends StatefulWidget {
   CartBottomNavbarCasual({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class _CartBottomNavbarCasualState extends State<CartBottomNavbarCasual> {
                       totalPrice += item['harga'] * item['quantity'];
                     }
                     return Text(
-                      "Checkout Rp. $totalPrice", // Menggunakan total harga dari CartProvider
+                      "Checkout Rp. $totalPrice",
                       style: TextStyle(
                         fontSize: 19,
                         fontWeight: FontWeight.bold,
@@ -75,12 +75,71 @@ class _CartBottomNavbarCasualState extends State<CartBottomNavbarCasual> {
                   builder: (context, cartProvider, child) {
                     return ElevatedButton(
                       onPressed: () {
+                        // Cek apakah ada item dengan kuantitas 0
+                        bool hasZeroQuantity = cartProvider.cartItems.any((item) => item['quantity'] == 0);
+
+                        if (hasZeroQuantity) {
+                          // Tampilkan dialog jika ada item dengan kuantitas 0
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text("Peringatan",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(color: Colors.red),
+                                ),
+                                
+                                content: Text("Terdapat item dengan kuantitas 0 di keranjang belanja Anda."),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text("OK"),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                          return;
+                        }
+
                         if (dropDownValue != null) {
-                            if (dropDownValue == "Saldo") {
-                              final wallet = context.read<Wallet>();
-                            if (wallet.saldo >= cartProvider.totalPrices) {
-                              wallet.pay(cartProvider.totalPrices);
-                              cartProvider.ClearItems();
+                          if (dropDownValue == "Saldo") {
+                            final wallet = context.read<Wallet>();
+                            final cartTotal = cartProvider.totalPrices;
+                            if (wallet.saldo >= cartTotal) {
+                              // Tampilkan dialog konfirmasi
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text("Konfirmasi Pembayaran"),
+                                    content: Text("Apakah Anda yakin ingin membayar menggunakan saldo?"),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text("Batal"),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          wallet.pay(cartTotal);
+                                          cartProvider.ClearItems();
+                                          Navigator.of(context).pop();
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: Text('Pembayaran berhasil menggunakan saldo.'),
+                                            ),
+                                          );
+                                        },
+                                        child: const Text("Lanjut"),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
                             } else {
                               // Tampilkan notifikasi jika saldo tidak mencukupi
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -89,7 +148,49 @@ class _CartBottomNavbarCasualState extends State<CartBottomNavbarCasual> {
                                 ),
                               );
                             }
+                          } else if (dropDownValue == "Tunai") {
+                            // Tampilkan dialog pembayaran tunai
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Konfirmasi Pembayaran"),
+                                  content: Text("Apakah Anda yakin ingin membayar tunai?"),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text("Batal"),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        cartProvider.ClearItems();
+                                        Navigator.of(context).pop();
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
+                                            content: Text('Pembayaran berhasil menggunakan tunai.'),
+                                            backgroundColor: Colors.green,
+                                            duration: Duration(milliseconds: 1000),
+                                          ),
+                                        );
+                                      },
+                                      child: const Text("Lanjut"),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           }
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Silakan pilih metode pembayaran terlebih dahulu.',
+                              style: TextStyle(color: Colors.white)),
+                              backgroundColor: Colors.red,
+                              duration: Duration(milliseconds: 1000),
+                            ),
+                          );
                         }
                       },
                       style: ButtonStyle(

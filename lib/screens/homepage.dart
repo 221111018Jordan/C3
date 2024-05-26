@@ -6,6 +6,7 @@ import 'package:uas/wallet/topup.dart';
 import 'package:uas/wallet/wallet.dart';
 import 'package:uas/widget/ButtonHomePage.dart';
 
+// ignore: must_be_immutable
 class Homepage extends StatelessWidget {
   Homepage({super.key});
   TextEditingController jumlah = TextEditingController();

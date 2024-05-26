@@ -128,20 +128,26 @@ class _HomePageCasualState extends State<HomePageCasual> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(content[_currentIndex]['screen'],
-          style: TextStyle(color: Colors.white),),
+          title: Text(
+            content[_currentIndex]['screen'],
+            style: TextStyle(color: Colors.white),
+          ),
           centerTitle: true,
           backgroundColor: Colors.black,
           leading: Builder(
-            builder: (context) {
+            builder: (BuildContext context) {
               return IconButton(
-                icon: Icon(Icons.menu, color: Colors.white),
+                icon: Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                ),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
                 },
               );
             },
           ),
+
           bottom: TabBar(
             onTap: (value) {
               setState(() {
@@ -210,15 +216,16 @@ class _HomePageCasualState extends State<HomePageCasual> {
                                     Provider.of<CartProvider>(context,
                                             listen: false)
                                         .addToCart(e);
-                                        ScaffoldMessenger.of(context).showSnackBar(
+                                    ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                            'Item berhasil ditambahkan ke keranjang',style: TextStyle(color: Colors.white),
-                                            ),
-                                            backgroundColor: Colors.green,
+                                          'Item berhasil ditambahkan ke keranjang',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        backgroundColor: Colors.green,
                                         duration: Duration(
                                             milliseconds:
-                                              800), // Durasi tampilan notifikasi
+                                                800), // Durasi tampilan notifikasi
                                       ),
                                     );
                                   },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/theme.dart';
 
+// ignore: must_be_immutable
 class BotNav extends StatefulWidget {
   BotNav(
       {super.key

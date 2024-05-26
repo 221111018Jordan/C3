@@ -72,10 +72,35 @@ class _CartBottomNavbarState extends State<CartBottomNavbar> {
                     onPressed: () {
                       if (dropDownValue != null) {
                         if (dropDownValue == "Saldo") {
+                          showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            // pesan muncul ketika klik open dialog
+                            title: Text("Tambah User"),
+                            content: SizedBox(
+                              height: 200,
+                              width: double.infinity,
+                              child : Column(
+                                children: [TextField(), TextField()],
+                              ),
+                              ),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text("Batal")),
+                              TextButton(
+                                  onPressed: () {}, child: const Text("Lanjut"))
+                            ],
+                          );
+                        });
                           final wallet = context.read<Wallet>();
                           final foodListManager = context.read<FoodListManager>();
                           if (wallet.saldo >= value.totalPrice) {
                             wallet.pay(value.totalPrice);
+                            
                             foodListManager.Clear();
                           } else {
                             // Tampilkan notifikasi jika saldo tidak mencukupi

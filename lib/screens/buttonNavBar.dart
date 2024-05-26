@@ -6,6 +6,7 @@ import 'package:uas/screens/categorypage.dart';
 import 'package:uas/screens/homepage.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable, camel_case_types
 class bottonnav extends StatefulWidget {
   bottonnav({super.key, required this.currentIndex});
 
