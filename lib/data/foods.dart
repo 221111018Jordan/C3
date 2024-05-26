@@ -625,7 +625,6 @@ class FoodListManager with ChangeNotifier {
   void increase(value) {
     notifyListeners();
     value.quantity += 1;
-    // Calculate(value);
   }
 
   void decrease(value) {
@@ -633,7 +632,6 @@ class FoodListManager with ChangeNotifier {
     if (value.quantity > 0) {
       value.quantity -= 1;
     }
-    // Calculate(value);
   }
 
   dynamic _total = 0;
@@ -666,23 +664,3 @@ class FoodListManager with ChangeNotifier {
   dynamic get total => _total;
   List<foodModel> get foodlist => _foodsData;
 }
-
-  // int get totalPrice {
-  //   // // if (_CardList.isEmpty) {
-  //   //   print("Kosongg");
-  //   //   return 0;
-  //   // }
-
-  //   dynamic total = 0;
-
-  //   for (int i = 0; i < _CardList.length; i++) {
-  //     print(i);
-  //     total += _CardList[i]["quantity"];
-  //   }
-  //   return total;
-
-    // for (dynamic i in _CardList) {
-    //   int jumlah = i["quantity"] * i["harga"];
-    //   total += jumlah;
-    // }
-    // return total;

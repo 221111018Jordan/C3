@@ -5,6 +5,7 @@ import 'package:uas/components/users.dart';
 import 'package:uas/data/cartprovider.dart';
 import 'package:uas/data/foods.dart';
 import 'package:uas/data/theme.dart';
+import 'package:uas/pages_casualshopping.dart/CartCasual.dart';
 import 'package:uas/pages_food.dart/CartPage.dart';
 import 'package:uas/pages_food.dart/HomePageFood.dart';
 import 'package:uas/pages_food.dart/ItemPage.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         "wishlist": (context) => WishList(),
         "homepagefood": (context) => HomePageFood(),
         "cartPage": (context) => const CartPage(),
+        "casualcart": (context) => CasualCartPage(),
         "itemPage": (context) => const ItemPage(),
         "drink": (context) => BreadList(kategori: "Minuman"),
         "snack": (context) => BreadList(kategori: "Snack"),
