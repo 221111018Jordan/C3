@@ -7,11 +7,11 @@ class CartProvider with ChangeNotifier {
 
   void addToCart(Map<String, dynamic> item) {
     bool alreadyInCart =
-        _cartItems.any((cartItem) => cartItem['title'] == item['title']);
+        _cartItems.contains(item);
 
     if (alreadyInCart) {
       int index = _cartItems
-          .indexWhere((cartItem) => cartItem['title'] == item['title']);
+          .indexOf(item);
       increaseQuantity(index);
     } else {
       // Jika belum ada, tambahkan ke keranjang
