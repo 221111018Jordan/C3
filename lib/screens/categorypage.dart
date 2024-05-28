@@ -6,7 +6,7 @@ import 'package:uas/widget/CategoriesWidget.dart';
 class CategoryPage extends StatelessWidget {
   CategoryPage({super.key});
 
-  List<String> content = [
+  final List<String> content = [
     "https://i.pinimg.com/564x/74/03/f8/7403f86b3875302f2ba2dd790b4a8e01.jpg",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrVj6r2_M_nyQYFPuTzuF_6Zf6FaSAekfZOwuBLreAFQ&s",
     "https://areioutdoorgear.co.id/wp-content/uploads/2023/03/WhatsApp-Image-2023-03-09-at-15.47.34-1.jpeg",
@@ -15,7 +15,7 @@ class CategoryPage extends StatelessWidget {
     "https://contents.mediadecathlon.com/p2137351/k348eebdd745c6f2531cf465fe8dd91a1/men-s-mountain-trekking-durable-shorts-mt500.jpg?format=auto&quality=70&f=768x768",
     "https://down-id.img.susercontent.com/file/id-11134207-7qul1-lke0437zzk8a3f",
     "https://down-id.img.susercontent.com/file/id-11134207-7qul1-lhx5e3hvkzckd6",
-    "https://cdn.eraspace.com/media/catalog/product/a/p/apple_iphone_15_pro_max_natural_titanium_1_1_2.jpg",    
+    "https://cdn.eraspace.com/media/catalog/product/a/p/apple_iphone_15_pro_max_natural_titanium_1_1_2.jpg",
   ];
 
   @override
@@ -23,29 +23,25 @@ class CategoryPage extends StatelessWidget {
     return Scaffold(
       body: ListView(
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 10,
-              horizontal: 15,
-            ),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Container(
               width: double.infinity,
               height: 50,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(35),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 10,
-                      offset: const Offset(0, 3),
-                    ),
-                  ]),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(35),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    spreadRadius: 10,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: [
                     const Icon(
@@ -56,9 +52,7 @@ class CategoryPage extends StatelessWidget {
                       height: 50,
                       width: 300,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 15
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: TextFormField(
                           decoration: const InputDecoration(
                             hintText: "What would you like to have?",
@@ -83,9 +77,7 @@ class CategoryPage extends StatelessWidget {
               ),
             ),
           ),
-
           CategoriesWidget(),
-
           const Padding(
             padding: EdgeInsets.only(top: 20, left: 20),
             child: Text(
@@ -96,38 +88,43 @@ class CategoryPage extends StatelessWidget {
               ),
             ),
           ),
-
-          SizedBox(
-            height: 5,
+          const SizedBox(height: 5),
+          CarouselSlider(
+            items: content.map((imageUrl) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => HomePageCasual(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(imageUrl),
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            }).toList(),
+            options: CarouselOptions(
+              height: 300,
+              autoPlay: true,
+              enlargeCenterPage: true,
+              aspectRatio: 16 / 9,
+              viewportFraction: 0.8,
+            ),
           ),
-
-          Container(
-            child: CarouselSlider(
-              items: content.map((e) {
-                return GestureDetector(
-                  onTap: (){
-                    Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => HomePageCasual()
-                              )
-                              );
-
-                  } ,
-                  child: Container(
-                    width: double.infinity,
-                    height: 5,
-                    margin: EdgeInsets.symmetric(horizontal: 5),
-                  color: Colors.red,
-                  ) ,
-                  
-                );
-              }).toList(), 
-              
-              options: CarouselOptions(height: 300, autoPlay: true)),)
-        
         ],
       ),
-
       floatingActionButton: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -144,7 +141,7 @@ class CategoryPage extends StatelessWidget {
           onPressed: () {
             Navigator.pushNamed(context, "cartPage");
           },
-          child: Icon(
+          child: const Icon(
             Icons.shopping_cart,
             size: 28,
             color: Colors.red,
