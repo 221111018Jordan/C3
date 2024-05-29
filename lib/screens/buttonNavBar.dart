@@ -18,7 +18,7 @@ class bottonnav extends StatefulWidget {
 }
 
 class _bottonnavState extends State<bottonnav> {
-  final List<Widget> bodyContent = [Homepage(), CategoryPage(), AccountPage()];
+  final List<Widget> bodyContent = [Homepage(), CategoryPage(), accountpage()];
   // void moveNav(int index) {
   //   setState(() {
   //     widget.currentIndex = index;
