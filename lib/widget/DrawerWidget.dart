@@ -147,32 +147,6 @@ class DrawerWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
             child: ElevatedButton(
               onPressed: () {
-                // Lakukan aksi saat tombol "Settings" ditekan
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red, // Warna latar belakang
-                elevation: 4, // Tinggi tombol terangkat
-              ),
-              child: ListTile(
-                leading: Icon(
-                  CupertinoIcons.settings,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  'Settings',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-            child: ElevatedButton(
-              onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) {
                     return LoginPage(); // Ganti HalamanBaru dengan nama halaman yang ingin ditampilkan

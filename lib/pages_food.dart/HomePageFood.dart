@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uas/FoodInCategory.dart/listMakanPage.dart';
 import 'package:uas/data/foods.dart';
 import 'package:uas/data/theme.dart';
 import 'package:uas/models/foodModel.dart';
@@ -58,9 +59,8 @@ class _HomePageFoodState extends State<HomePageFood> {
           ),
         ],
       ),
-      backgroundColor: Provider.of<themeManager>(context).mode
-          ? Colors.black
-          : Colors.white,
+      backgroundColor:
+          Provider.of<themeManager>(context).mode ? Colors.black : Colors.white,
       body: Padding(
         padding: const EdgeInsets.only(top: 12, bottom: 6),
         child: Column(
@@ -158,14 +158,22 @@ class _HomePageFoodState extends State<HomePageFood> {
                           return selectedkategori.contains(element.kategori);
                         }
                       }).map((element) {
-                        return Container(
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    BreadList(kategori: element.kategori),
+                              ),
+                            );
+                          },
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Image.asset(
                                 element.imagePath,
                                 fit: BoxFit.cover,
-                                height: 150, // Adjust the height as needed
+                                height: 150,
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -176,28 +184,31 @@ class _HomePageFoodState extends State<HomePageFood> {
                                       element.text,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Provider.of<themeManager>(context)
-                                                .mode
-                                            ? Colors.white
-                                            : Colors.black,
+                                        color:
+                                            Provider.of<themeManager>(context)
+                                                    .mode
+                                                ? Colors.white
+                                                : Colors.black,
                                       ),
                                     ),
                                     Text(
                                       'kategori: ${element.kategori}',
                                       style: TextStyle(
-                                        color: Provider.of<themeManager>(context)
-                                                .mode
-                                            ? Colors.white
-                                            : Colors.black,
+                                        color:
+                                            Provider.of<themeManager>(context)
+                                                    .mode
+                                                ? Colors.white
+                                                : Colors.black,
                                       ),
                                     ),
                                     Text(
                                       'Price: ${element.harga}',
                                       style: TextStyle(
-                                        color: Provider.of<themeManager>(context)
-                                                .mode
-                                            ? Colors.white
-                                            : Colors.black,
+                                        color:
+                                            Provider.of<themeManager>(context)
+                                                    .mode
+                                                ? Colors.white
+                                                : Colors.black,
                                       ),
                                     ),
                                   ],
