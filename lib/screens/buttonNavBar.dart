@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uas/data/theme.dart';
+import 'package:uas/pages/login_page.dart';
 import 'package:uas/screens/accountpage.dart';
 import 'package:uas/screens/botnav.dart';
 import 'package:uas/screens/categorypage.dart';
@@ -25,6 +26,7 @@ class _bottonnavState extends State<bottonnav> {
   // }
 
   List<String> title = ["Home", "Category Shopping", "Accounts"];
+  String? _selectedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -38,17 +40,29 @@ class _bottonnavState extends State<bottonnav> {
           titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
           title: Text(title[value.currentIndex]),
           actions: [
-            Switch(
-              activeColor: Colors.purple,
-              value: Provider.of<themeManager>(context).mode,
-              onChanged: (value) {
-                Provider.of<themeManager>(context, listen: false).changeMode();
-              },
-            ),
+            PopupMenuButton(
+                initialValue: _selectedValue,
+                onSelected: (String value) {
+                  setState(() {
+                    _selectedValue = value;
+                  });
+                },
+                itemBuilder: (context) => <PopupMenuEntry<String>>[
+                      PopupMenuItem(child: Switchs()),
+                      PopupMenuDivider(),
+                      PopupMenuItem(
+                          child: Text("LOG OUT"),
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return LoginPage();
+                              },
+                            ));
+                          })
+                    ])
           ],
         ),
         bottomNavigationBar: BotNav(
-          // moveNav: moveNav,
           items: const [
             {"label": "Home", "icon": Icons.home},
             {"label": "category", "icon": Icons.category},
@@ -58,5 +72,20 @@ class _bottonnavState extends State<bottonnav> {
         body: bodyContent[value.currentIndex],
       );
     });
+  }
+}
+
+class Switchs extends StatelessWidget {
+  const Switchs({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Switch(
+      activeColor: Colors.purple,
+      value: Provider.of<themeManager>(context).mode,
+      onChanged: (value) {
+        Provider.of<themeManager>(context, listen: false).changeMode();
+      },
+    );
   }
 }

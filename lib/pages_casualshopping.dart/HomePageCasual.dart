@@ -17,7 +17,7 @@ class _HomePageCasualState extends State<HomePageCasual> {
       "screen": "Casual Shopping",
       "contents": [
         {
-          "tab": "Popular",
+          "tab": "Trending",
           "data": [
             {
               "title": "Kaos Oblong",
@@ -91,7 +91,7 @@ class _HomePageCasualState extends State<HomePageCasual> {
           ]
         },
         {
-          "tab": "Coming Soon",
+          "tab": "Flash Sale",
           "data": [
             {
               "title": "iPhone 15 Pro Max",
