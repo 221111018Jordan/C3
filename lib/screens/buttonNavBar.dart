@@ -48,7 +48,7 @@ class _bottonnavState extends State<bottonnav> {
                   });
                 },
                 itemBuilder: (context) => <PopupMenuEntry<String>>[
-                      PopupMenuItem(child: Switchs()),
+                      PopupMenuItem(child:ListTile(title: Text("Dark Mode"),trailing: Switchs())),
                       PopupMenuDivider(),
                       PopupMenuItem(
                           child: Text("LOG OUT"),
