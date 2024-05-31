@@ -60,6 +60,7 @@ class _accountpageState extends State<accountpage> {
                     ],
                   )),
             ),
+            SizedBox(height: 12),
             Card(
                 child: ListTile(
               leading: Icon(Icons.person),
@@ -127,6 +128,7 @@ class _accountpageState extends State<accountpage> {
                 icon: Icon(Icons.arrow_forward),
               ),
             )),
+            SizedBox(height: 12),
             Card(
               child: ListTile(
                 leading: Icon(CupertinoIcons.location),
@@ -173,6 +175,7 @@ class _accountpageState extends State<accountpage> {
                     icon: Icon(Icons.arrow_forward)),
               ),
             ),
+            SizedBox(height: 12),
             Card(
               child: ListTile(
                 leading: Icon(Icons.info),
@@ -220,6 +223,7 @@ class _accountpageState extends State<accountpage> {
                     icon: Icon(Icons.arrow_forward)),
               ),
             ),
+            SizedBox(height: 12),
             Card(
                 child: ElevatedButton.icon(
               onPressed: () {
