@@ -7,8 +7,6 @@ import 'package:uas/screens/categorypage.dart';
 import 'package:uas/screens/homepage.dart';
 import 'package:provider/provider.dart';
 
-bool lokasi = true;
-
 // ignore: must_be_immutable, camel_case_types
 class bottonnav extends StatefulWidget {
   bottonnav({super.key, required this.currentIndex});
@@ -53,14 +51,14 @@ class _bottonnavState extends State<bottonnav> {
                       PopupMenuItem(child:ListTile(title: Text("Dark Mode"),trailing: Switchs())),
                       PopupMenuDivider(),
                       PopupMenuItem(
-                        child: ListTile(leading: Icon(Icons.logout),title: Text("LOG OUT"),),onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(
+                          child: Text("LOG OUT"),
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) {
                                 return LoginPage();
                               },
                             ));
-                        },
-                      )
+                          })
                     ])
           ],
         ),
