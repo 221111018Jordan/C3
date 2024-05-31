@@ -197,6 +197,18 @@ class _BreadListState extends State<BreadList> {
                                       context
                                           .read<FoodListManager>()
                                           .addChart(e);
+                                          ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Makanan berhasil ditambahkan ke keranjang',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          backgroundColor: Colors.green,
+                                          duration: Duration(milliseconds: 800),
+                                        ),
+                                      );
                                     },
                                     child: Icon(
                                       Icons.shopping_cart,
