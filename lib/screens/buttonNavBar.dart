@@ -51,14 +51,14 @@ class _bottonnavState extends State<bottonnav> {
                       PopupMenuItem(child:ListTile(title: Text("Dark Mode"),trailing: Switchs())),
                       PopupMenuDivider(),
                       PopupMenuItem(
-                          child: Text("LOG OUT"),
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
+                        child: ListTile(leading: Icon(Icons.logout),title: Text("LOG OUT"),),onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) {
                                 return LoginPage();
                               },
                             ));
-                          })
+                        },
+                      )
                     ])
           ],
         ),
