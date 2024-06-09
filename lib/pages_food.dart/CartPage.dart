@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/foods.dart';
 import 'package:uas/data/theme.dart';
-import 'package:uas/screens/detail.dart';
+import 'package:uas/screens/detailscreen.dart';
 import 'package:uas/widget/CartBottomNavbar.dart';
 
 class CartPage extends StatelessWidget {
@@ -42,7 +42,7 @@ class CartPage extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => detailScreen(
+                              builder: (context) => DetailScreen(
                                     data: bread,
                                   )));
                         },
@@ -173,7 +173,7 @@ class CartPage extends StatelessWidget {
                                   onPressed: () {
                                     context
                                         .read<FoodListManager>()
-                                        .removechart(bread);
+                                        .removeChart(bread);
                                   },
                                   child: Icon(
                                     Icons.delete,

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/screens/buttonNavBar.dart';
 import 'package:uas/wallet/wallet.dart';
@@ -33,25 +32,34 @@ class _WalletupState extends State<Walletup> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Row(
+        child: Column(
           children: [
-            Expanded(
-              child: TextField(
-                keyboardType: TextInputType.number,
-                controller: jumlah,
-                enabled: true,
-                decoration: InputDecoration(
-                  label: Text("Input Jumlah Topup"),
-                  prefixIcon: Icon(Icons.money),
-                ),
-              ),
+            Text(
+              'Saldo Anda: ${context.watch<Wallet>().formattedSaldo}',
+              style: TextStyle(fontSize: 20),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  context.read<Wallet>().topup(int.tryParse(jumlah.text) ?? 0);
-                  jumlah.text = "";
-                },
-                child: Text("Submit"))
+            SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    controller: jumlah,
+                    enabled: true,
+                    decoration: InputDecoration(
+                      label: Text("Input Jumlah Topup"),
+                      prefixIcon: Icon(Icons.money),
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      context.read<Wallet>().topup(int.tryParse(jumlah.text) ?? 0);
+                      jumlah.text = "";
+                    },
+                    child: Text("Submit"))
+              ],
+            ),
           ],
         ),
       ),

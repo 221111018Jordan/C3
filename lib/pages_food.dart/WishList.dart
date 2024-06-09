@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/foods.dart';
-import 'package:uas/screens/detail.dart';
+import 'package:uas/screens/detailscreen.dart';
 
 class WishList extends StatelessWidget {
   const WishList({super.key});
@@ -44,7 +44,7 @@ class WishList extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => detailScreen(
+                                  builder: (context) => DetailScreen(
                                         data: wishlist,
                                       )));
                             },

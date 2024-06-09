@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:uas/data/foods.dart';
 import 'package:uas/data/theme.dart';
 import 'package:uas/pages_food.dart/CartPage.dart';
-import 'package:uas/screens/detail.dart';
+import 'package:uas/screens/detailscreen.dart';
 
 class BreadList extends StatefulWidget {
   BreadList({super.key, required this.kategori});
@@ -85,7 +85,7 @@ class _BreadListState extends State<BreadList> {
                         child: GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => detailScreen(
+                                builder: (context) => DetailScreen(
                                       data: e,
                                     )));
                           },
@@ -146,8 +146,8 @@ class _BreadListState extends State<BreadList> {
                                               ),
                                             ),
                                             const SizedBox(height: 5),
-                                            const Text(
-                                              "We provide our great Snacks",
+                                            Text(
+                                              "We provide our great ${e.text}",
                                               style: TextStyle(
                                                 fontSize: 10,
                                               ),

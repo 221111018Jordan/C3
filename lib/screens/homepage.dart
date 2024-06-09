@@ -47,7 +47,7 @@ class Homepage extends StatelessWidget {
                         ),
                         Consumer<Wallet>(
                             builder: (context, value, child) => Text(
-                                  "Saldomu : Rp. ${value.saldo}",
+                                  "Saldomu : ${context.watch<Wallet>().formattedSaldo}",
                                   style: TextStyle(
                                       fontSize: 28,
                                       fontWeight: FontWeight.bold),

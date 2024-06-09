@@ -33,7 +33,7 @@ class _accountpageState extends State<accountpage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CircleAvatar(
-                        child: Image.asset("images/pizza.png"),
+                        child: Image.asset("images/avatar.jpg"),
                         radius: 50,
                       ),
                       Column(

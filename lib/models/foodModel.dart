@@ -1,9 +1,11 @@
+import 'package:intl/intl.dart';
+
 class foodModel {
   String imagePath;
   String text;
   String kategori;
   int quantity;
-  int harga;
+  String harga;
 
   foodModel({
     required this.imagePath,
@@ -12,4 +14,11 @@ class foodModel {
     required this.quantity,
     required this.harga,
   });
+
+  String get formattedHarga {
+    final formatter = NumberFormat.currency(locale: 'id_ID', symbol: '', decimalDigits: 0);
+    return formatter.format(harga);
+  }
 }
+
+
