@@ -45,7 +45,7 @@ class _WalletupState extends State<Walletup> {
                     keyboardType: TextInputType.number,
                     controller: jumlah,
                     inputFormatters: [CurrencyTextInputFormatter()],
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       label: Text("Input Jumlah Topup"),
                       prefixIcon: Icon(Icons.money),
                     ),
