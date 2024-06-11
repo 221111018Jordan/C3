@@ -43,7 +43,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 child: Container(
                   width: double.infinity,
-                  height: 300,
+                  height: 250,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(widget.data.imagePath),
@@ -167,21 +167,23 @@ class _DetailScreenState extends State<DetailScreen> {
                                 context.read<FoodListManager>().removeChart(widget.data);
                               }
                             },
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.shopping_cart,
-                                  color: isInCart ? Colors.red : Colors.grey,
-                                  size: 26,
-                                ),
-                                const SizedBox(width: 5),
-                                Text(
-                                  isInCart ? 'Remove from Cart' : 'Add to Cart',
-                                  style: TextStyle(
+                            child: SizedBox(
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.shopping_cart,
                                     color: isInCart ? Colors.red : Colors.grey,
+                                    size: 26,
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(width: 5),
+                                  Text(
+                                    isInCart ? 'Remove from Cart' : 'Add to Cart',
+                                    style: TextStyle(
+                                      color: isInCart ? Colors.red : Colors.grey,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
@@ -193,6 +195,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           ),
                         ],
                       ),
+                      
                     ],
                   ),
                 ),
