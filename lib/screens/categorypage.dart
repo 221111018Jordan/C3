@@ -44,9 +44,12 @@ class CategoryPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   children: [
-                    const Icon(
-                      Icons.search,
-                      color: Colors.red,
+                    const Tooltip(
+                      message: 'Cari Barang Disini',
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.red,
+                      ),
                     ),
                     SizedBox(
                       height: 50,
@@ -61,7 +64,10 @@ class CategoryPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Icon(Icons.filter_list),
+                    const Tooltip(
+                      message: 'Filter',
+                      child: Icon(Icons.filter_list),
+                    ),
                   ],
                 ),
               ),
@@ -93,21 +99,24 @@ class CategoryPage extends StatelessWidget {
             items: content.map((imageUrl) {
               return Builder(
                 builder: (BuildContext context) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => HomePageCasual(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(imageUrl),
-                          fit: BoxFit.contain,
+                  return Tooltip(
+                    message: 'Cek Barang ',
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => HomePageCasual(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(imageUrl),
+                            fit: BoxFit.contain,
+                          ),
                         ),
                       ),
                     ),
@@ -137,16 +146,19 @@ class CategoryPage extends StatelessWidget {
             ),
           ],
         ),
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "cartPage");
-          },
-          child: const Icon(
-            Icons.shopping_cart,
-            size: 28,
-            color: Colors.red,
+        child: Tooltip(
+          message: 'Cek Keranjang',
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "cartPage");
+            },
+            child: const Icon(
+              Icons.shopping_cart,
+              size: 28,
+              color: Colors.red,
+            ),
+            backgroundColor: Colors.white,
           ),
-          backgroundColor: Colors.white,
         ),
       ),
     );

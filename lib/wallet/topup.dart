@@ -22,11 +22,15 @@ class _WalletupState extends State<Walletup> {
         title: Text("TOP UP"),
         automaticallyImplyLeading: false,
         actions: [
-          ElevatedButton(
+          Tooltip(
+            message: 'Kembali ke halaman Home ',
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => bottonnav(currentIndex: 0)));
               },
-              child: Text("BACK TO HOME"))
+              child: Text("BACK TO HOME"),
+            ),
+          ),
         ],
       ),
       body: Padding(
@@ -41,22 +45,29 @@ class _WalletupState extends State<Walletup> {
             Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    controller: jumlah,
-                    inputFormatters: [CurrencyTextInputFormatter()],
-                    decoration: const InputDecoration(
-                      label: Text("Input Jumlah Topup"),
-                      prefixIcon: Icon(Icons.money),
+                  child: Tooltip(
+                    message: 'Masukkan Jumlah Uang Yang Tidak melebihi Rp. 100 jt',
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      controller: jumlah,
+                      inputFormatters: [CurrencyTextInputFormatter()],
+                      decoration: const InputDecoration(
+                        label: Text("Input Jumlah Topup"),
+                        prefixIcon: Icon(Icons.money),
+                      ),
                     ),
                   ),
                 ),
-                ElevatedButton(
+                Tooltip(
+                  message: 'Konfirmasi TopUp',
+                  child: ElevatedButton(
                     onPressed: () {
                       context.read<Wallet>().topup(_parseCurrency(jumlah.text));
                       jumlah.text = "";
                     },
-                    child: Text("Submit"))
+                    child: Text("Submit"),
+                  ),
+                ),
               ],
             ),
           ],
