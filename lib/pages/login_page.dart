@@ -38,9 +38,12 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 50),
 
                 // logo
-                const Icon(
-                  Icons.person,
-                  size: 100,
+                Tooltip(
+                  message: 'User Icon',
+                  child: const Icon(
+                    Icons.person,
+                    size: 100,
+                  ),
                 ),
 
                 const SizedBox(height: 50),
@@ -76,7 +79,6 @@ class _LoginPageState extends State<LoginPage> {
                   "Email Atau Password Salah",
                   style: TextStyle(
                     color: errorActive ? Colors.red : Colors.grey[300],
-                    // color: errorActive ? Colors.red : Colors.white,
                   ),
                 )),
 
@@ -87,16 +89,19 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       SizedBox(height: 10),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) {
-                            return ForgotPassword();
-                          }));
-                        },
-                        child: Text(
-                          'Forgot Password?',
-                          style: TextStyle(color: Colors.grey[600]),
+                      Tooltip(
+                        message: 'Lupa Password?',
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) {
+                              return ForgotPassword();
+                            }));
+                          },
+                          child: Text(
+                            'Forgot Password?',
+                            style: TextStyle(color: Colors.grey[600]),
+                          ),
                         ),
                       )
                     ],
@@ -112,40 +117,44 @@ class _LoginPageState extends State<LoginPage> {
                       height: 50,
                       child: Consumer<userListManager>(
                         builder: (context, value, child) {
-                          return ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                bool found = false;
-                                if (emailC.text.isEmpty &&
-                                    passwordC.text.isEmpty) {
-                                  errorActive = true;
-                                } else {
-                                  for (var element in value.listUsers) {
-                                    print(element.email);
-                                    if (element.email == emailC.text &&
-                                        element.passwd == passwordC.text) {
-                                      value.changeUser(element);
-                                      Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  bottonnav(currentIndex: 0)));
-                                      errorActive = false;
-                                      found = true;
+                          return Tooltip(
+                            message: 'Login apabila sudah memiliki akun',
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  bool found = false;
+                                  if (emailC.text.isEmpty &&
+                                      passwordC.text.isEmpty) {
+                                    errorActive = true;
+                                  } else {
+                                    for (var element in value.listUsers) {
+                                      print(element.email);
+                                      if (element.email == emailC.text &&
+                                          element.passwd == passwordC.text) {
+                                        value.changeUser(element);
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    bottonnav(
+                                                        currentIndex: 0)));
+                                        errorActive = false;
+                                        found = true;
+                                      }
                                     }
                                   }
-                                }
-                                if (!found) {
-                                  errorActive = true;
-                                }
-                              });
-                            },
-                            child: const Text(
-                              "Log in",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
+                                  if (!found) {
+                                    errorActive = true;
+                                  }
+                                });
+                              },
+                              child: const Text(
+                                "Log in",
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.black),
                             ),
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black),
                           );
                         },
                       )),
@@ -181,17 +190,20 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(width: 4),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) {
-                            return Register();
-                          }));
-                        },
-                        child: const Text(
-                          "Register now",
-                          style: TextStyle(color: Colors.blue),
-                        ))
+                    Tooltip(
+                      message: 'Registrasi akun baru mu disini',
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(builder: (context) {
+                              return Register();
+                            }));
+                          },
+                          child: const Text(
+                            "Register now",
+                            style: TextStyle(color: Colors.blue),
+                          )),
+                    )
                   ],
                 )
               ],

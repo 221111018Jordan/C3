@@ -37,9 +37,12 @@ class _RegisterState extends State<Register> {
               children: [
                 const SingleChildScrollView(scrollDirection: Axis.horizontal),
                 const SizedBox(height: 30),
-                const Icon(
-                  Icons.person,
-                  size: 100,
+                Tooltip(
+                  message: 'User Icon',
+                  child: const Icon(
+                    Icons.person,
+                    size: 100,
+                  ),
                 ),
                 Divider(
                   thickness: 0.5,
@@ -54,31 +57,31 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 const SizedBox(height: 30),
-            
+
                 MyTextField(
                   controller: usernameController,
                   hintText: 'Username',
                   obscureText: false,
                 ),
-            
+
                 const SizedBox(height: 10),
-            
+
                 MyTextField(
                   controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
                 ),
-            
+
                 const SizedBox(height: 10),
-            
+
                 MyTextField(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
-            
+
                 const SizedBox(height: 25),
-            
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: SizedBox(
@@ -86,74 +89,76 @@ class _RegisterState extends State<Register> {
                     height: 50,
                     child: Consumer<userListManager>(
                       builder: (context, value, child) {
-                        return ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              errorActive = false;
-                              added = false;
-                              for (var element in value.listUsers) {
-                                if (element.email == emailController.text) {
-                                  errorActive = true;
+                        return Tooltip(
+                          message: 'Registrasi akun baru',
+                          child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                errorActive = false;
+                                added = false;
+                                for (var element in value.listUsers) {
+                                  if (element.email == emailController.text) {
+                                    errorActive = true;
+                                  }
                                 }
+                                if (!errorActive) {
+                                  value.addUser(
+                                      usernameController.text,
+                                      emailController.text,
+                                      passwordController.text);
+                                  added = true;
+                                }
+                              });
+                              // Pengecekan apakah field username dan password kosong
+                              if (usernameController.text.isNotEmpty &&
+                                  emailController.text.isNotEmpty &&
+                                  passwordController.text.isNotEmpty) {
+                                value.addUser(usernameController.text,
+                                    emailController.text, passwordController.text);
+                              } else {
+                                // Menampilkan pesan jika salah satu atau kedua field kosong
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: const Text("Error"),
+                                      content: const Text(
+                                          "Username and/or Email and/or password cannot be empty."),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text("OK"),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
                               }
-                              if (!errorActive) {
-                                value.addUser(
-                                    usernameController.text,
-                                    emailController.text,
-                                    passwordController.text);
-                                added = true;
-                              }
-                            });
-                            // Pengecekan apakah field username dan password kosong
-                            if (usernameController.text.isNotEmpty &&
-                                emailController.text.isNotEmpty &&
-                                passwordController.text.isNotEmpty) {
-                              value.addUser(usernameController.text,
-                                  emailController.text, passwordController.text);
-                            } else {
-                              // Menampilkan pesan jika salah satu atau kedua field kosong
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: const Text("Error"),
-                                    content: const Text(
-                                        "Username and/or Email and/or password cannot be empty."),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text("OK"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            }
-                          },
-                          child: const Text(
-                            "Register",
-                            style: TextStyle(fontSize: 20, color: Colors.white),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
+                            },
+                            child: const Text(
+                              "Register",
+                              style: TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black,
+                            ),
                           ),
                         );
                       },
                     ),
                   ),
                 ),
-            
+
                 SizedBox(
-                  height:20,
+                  height: 20,
                 ),
                 Center(
                     child: Text(
                   "Akun sudah terdaftar",
                   style: TextStyle(
                     color: errorActive ? Colors.red : Colors.grey[300],
-                    // color: errorActive ? Colors.red : Colors.white,
                   ),
                 )),
                 Center(
@@ -161,10 +166,9 @@ class _RegisterState extends State<Register> {
                   "Akun berhasil terdaftar",
                   style: TextStyle(
                     color: added ? Colors.black : Colors.grey[300],
-                    // color: errorActive ? Colors.red : Colors.white,
                   ),
                 )),
-            
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
@@ -178,20 +182,23 @@ class _RegisterState extends State<Register> {
                     ],
                   ),
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return LoginPage();
-                        },
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    "Back To Login",
-                    style: TextStyle(color: Colors.blue),
+                Tooltip(
+                  message: 'Kembali ke login page sebelumnya',
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return LoginPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "Back To Login",
+                      style: TextStyle(color: Colors.blue),
+                    ),
                   ),
                 ),
               ],

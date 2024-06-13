@@ -9,7 +9,6 @@ class ForgotPassword extends StatelessWidget {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +24,12 @@ class ForgotPassword extends StatelessWidget {
             children: [
               const SizedBox(height: 30),
               // logo
-              const Icon(
-                Icons.person,
-                size: 100,
+              Tooltip(
+                message: 'User Icon',
+                child: const Icon(
+                  Icons.person,
+                  size: 100,
+                ),
               ),
               Divider(
                 thickness: 0.5,
@@ -52,54 +54,58 @@ class ForgotPassword extends StatelessWidget {
               const SizedBox(height: 10),
 
               MyTextField(
-                  controller: emailController,
-                  hintText: 'Email',
-                  obscureText: false,
-                ),
+                controller: emailController,
+                hintText: 'Email',
+                obscureText: false,
+              ),
 
-                const SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: SizedBox(
                   width: 300,
                   height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Pengecekan apakah field username dan password kosong
-                      if (usernameController.text.isNotEmpty && emailController.text.isNotEmpty ) {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) {
-                          return LoginPage();
-                        }));
-                      } else {
-                        // Menampilkan pesan jika salah satu atau kedua field kosong
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text("Error"),
-                              content: const Text(
-                                  "Username and/or Email cannot be empty."),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text("OK"),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
-                    child: const Text(
-                      "Confirm",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
+                  child: Tooltip(
+                    message: 'Konfirmasi',
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // Pengecekan apakah field username dan password kosong
+                        if (usernameController.text.isNotEmpty &&
+                            emailController.text.isNotEmpty) {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return LoginPage();
+                          }));
+                        } else {
+                          // Menampilkan pesan jika salah satu atau kedua field kosong
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text("Error"),
+                                content: const Text(
+                                    "Username and/or Email cannot be empty."),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text("OK"),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      },
+                      child: const Text(
+                        "Confirm",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                      ),
                     ),
                   ),
                 ),
@@ -117,7 +123,9 @@ class ForgotPassword extends StatelessWidget {
                   ],
                 ),
               ),
-              TextButton(
+              Tooltip(
+                message: 'Registrasi akun apabila belum ada',
+                child: TextButton(
                   onPressed: () {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) {
@@ -128,7 +136,8 @@ class ForgotPassword extends StatelessWidget {
                     "Don't Have Account? Register",
                     style: TextStyle(color: Colors.blue),
                   ),
-                  )
+                ),
+              )
             ],
           ),
         ),
