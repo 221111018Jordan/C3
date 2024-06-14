@@ -12,18 +12,24 @@ class CasualCartPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Casual Shopping Cart'),
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+        leading: Tooltip(
+          message: 'Back',
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.home),
-            onPressed: () {
-              Navigator.of(context).popUntil((route) => route.isFirst);
-            },
+          Tooltip(
+            message: 'Kembali ke Home',
+            child: IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () {
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+            ),
           ),
         ],
       ),
@@ -115,35 +121,41 @@ class CasualCartPage extends StatelessWidget {
                                 right: 0,
                                 child: Row(
                                   children: [
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        cartProvider.decreaseQuantity(index);
-                                      },
-                                      child: Icon(
-                                        Icons.remove,
-                                        color: Colors.red,
-                                        size: 26,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        shape: const CircleBorder(),
-                                        padding: const EdgeInsets.all(10),
-                                        backgroundColor: Colors.white,
+                                    Tooltip(
+                                      message: 'Kurang Item',
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          cartProvider.decreaseQuantity(index);
+                                        },
+                                        child: Icon(
+                                          Icons.remove,
+                                          color: Colors.red,
+                                          size: 26,
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(10),
+                                          backgroundColor: Colors.white,
+                                        ),
                                       ),
                                     ),
                                     Text("${item['quantity']}"),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        cartProvider.increaseQuantity(index);
-                                      },
-                                      child: Icon(
-                                        Icons.add,
-                                        color: Colors.red,
-                                        size: 26,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        shape: const CircleBorder(),
-                                        padding: const EdgeInsets.all(10),
-                                        backgroundColor: Colors.white,
+                                    Tooltip(
+                                      message: 'Tambah Item',
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          cartProvider.increaseQuantity(index);
+                                        },
+                                        child: Icon(
+                                          Icons.add,
+                                          color: Colors.red,
+                                          size: 26,
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(10),
+                                          backgroundColor: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -152,19 +164,22 @@ class CasualCartPage extends StatelessWidget {
                               Positioned(
                                 bottom: 0,
                                 right: 0,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    cartProvider.removeFromCart(item);
-                                  },
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: Colors.red,
-                                    size: 26,
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    shape: const CircleBorder(),
-                                    padding: const EdgeInsets.all(10),
-                                    backgroundColor: Colors.white,
+                                child: Tooltip(
+                                  message: 'Hapus Item',
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      cartProvider.removeFromCart(item);
+                                    },
+                                    child: Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
+                                      size: 26,
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                      shape: const CircleBorder(),
+                                      padding: const EdgeInsets.all(10),
+                                      backgroundColor: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),

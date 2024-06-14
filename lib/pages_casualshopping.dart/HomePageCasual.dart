@@ -136,18 +136,20 @@ class _HomePageCasualState extends State<HomePageCasual> {
           backgroundColor: Colors.black,
           leading: Builder(
             builder: (BuildContext context) {
-              return IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.white,
+              return Tooltip(
+                message: 'Menu',
+                child: IconButton(
+                  icon: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
                 ),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
               );
             },
           ),
-
           bottom: TabBar(
             onTap: (value) {
               setState(() {
@@ -165,7 +167,6 @@ class _HomePageCasualState extends State<HomePageCasual> {
           ),
         ),
         drawer: DrawerWidget(),
-        
         body: data().isNotEmpty
             ? Column(
                 children: data().map((e) {
@@ -211,25 +212,28 @@ class _HomePageCasualState extends State<HomePageCasual> {
                                     fontSize: 12,
                                   ),
                                 ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    Provider.of<CartProvider>(context,
-                                            listen: false)
-                                        .addToCart(e);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Item berhasil ditambahkan ke keranjang',
-                                          style: TextStyle(color: Colors.white),
+                                Tooltip(
+                                  message: 'Tambah Ke Keranjang',
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Provider.of<CartProvider>(context,
+                                              listen: false)
+                                          .addToCart(e);
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Item berhasil ditambahkan ke keranjang',
+                                            style: TextStyle(color: Colors.white),
+                                          ),
+                                          backgroundColor: Colors.green,
+                                          duration: Duration(
+                                              milliseconds:
+                                                  800), // Durasi tampilan notifikasi
                                         ),
-                                        backgroundColor: Colors.green,
-                                        duration: Duration(
-                                            milliseconds:
-                                                800), // Durasi tampilan notifikasi
-                                      ),
-                                    );
-                                  },
-                                  child: Icon(Icons.shopping_cart),
+                                      );
+                                    },
+                                    child: Icon(Icons.shopping_cart),
+                                  ),
                                 ),
                               ],
                             ),
@@ -248,15 +252,18 @@ class _HomePageCasualState extends State<HomePageCasual> {
                   )
                 ],
               ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => CasualCartPage(),
-              ),
-            );
-          },
-          child: Icon(Icons.shopping_cart),
+        floatingActionButton: Tooltip(
+          message: 'Pergi Ke Keranjang',
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CasualCartPage(),
+                ),
+              );
+            },
+            child: Icon(Icons.shopping_cart),
+          ),
         ),
       ),
     );

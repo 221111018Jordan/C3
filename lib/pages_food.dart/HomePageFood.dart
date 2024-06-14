@@ -35,32 +35,37 @@ class _HomePageFoodState extends State<HomePageFood> {
       appBar: AppBar(
         leading: Builder(
           builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
+            return Tooltip(
+              message: 'Menu',
+              child: IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              ),
             );
           },
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return bottonnav(currentIndex: 0);
-                  },
-                ),
-              );
-            },
-            icon: Icon(Icons.home_sharp),
+          Tooltip(
+            message: 'Home',
+            child: IconButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return bottonnav(currentIndex: 0);
+                    },
+                  ),
+                );
+              },
+              icon: Icon(Icons.home_sharp),
+            ),
           ),
         ],
       ),
-      backgroundColor:
-          Provider.of<themeManager>(context).mode ? Colors.black : Colors.white,
+      backgroundColor: Provider.of<themeManager>(context).mode ? Colors.black : Colors.white,
       body: Padding(
         padding: const EdgeInsets.only(top: 12, bottom: 6),
         child: Column(
@@ -109,7 +114,10 @@ class _HomePageFoodState extends State<HomePageFood> {
                           ),
                         ),
                       ),
-                      const Icon(Icons.filter_list),
+                      const Tooltip(
+                        message: 'Filter',
+                        child: Icon(Icons.filter_list),
+                      ),
                     ],
                   ),
                 ),
@@ -145,8 +153,7 @@ class _HomePageFoodState extends State<HomePageFood> {
                 child: Consumer<FoodListManager>(
                   builder: (context, value, child) {
                     return GridView(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 2,
                         crossAxisCount: 2,
                         childAspectRatio: 1 / 1.25,
@@ -162,8 +169,7 @@ class _HomePageFoodState extends State<HomePageFood> {
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    BreadList(kategori: element.kategori),
+                                builder: (context) => BreadList(kategori: element.kategori),
                               ),
                             );
                           },
@@ -184,31 +190,19 @@ class _HomePageFoodState extends State<HomePageFood> {
                                       element.text,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color:
-                                            Provider.of<themeManager>(context)
-                                                    .mode
-                                                ? Colors.white
-                                                : Colors.black,
+                                        color: Provider.of<themeManager>(context).mode ? Colors.white : Colors.black,
                                       ),
                                     ),
                                     Text(
                                       'kategori: ${element.kategori}',
                                       style: TextStyle(
-                                        color:
-                                            Provider.of<themeManager>(context)
-                                                    .mode
-                                                ? Colors.white
-                                                : Colors.black,
+                                        color: Provider.of<themeManager>(context).mode ? Colors.white : Colors.black,
                                       ),
                                     ),
                                     Text(
                                       'Price: ${element.harga}',
                                       style: TextStyle(
-                                        color:
-                                            Provider.of<themeManager>(context)
-                                                    .mode
-                                                ? Colors.white
-                                                : Colors.black,
+                                        color: Provider.of<themeManager>(context).mode ? Colors.white : Colors.black,
                                       ),
                                     ),
                                   ],
@@ -227,28 +221,31 @@ class _HomePageFoodState extends State<HomePageFood> {
         ),
       ),
       drawer: DrawerWidget(),
-      floatingActionButton: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 10,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "cartPage");
-          },
-          child: Icon(
-            Icons.shopping_cart,
-            size: 28,
-            color: Colors.red,
+      floatingActionButton: Tooltip(
+        message: 'Ke Keranjang',
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 10,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
-          backgroundColor: Colors.white,
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "cartPage");
+            },
+            child: Icon(
+              Icons.shopping_cart,
+              size: 28,
+              color: Colors.red,
+            ),
+            backgroundColor: Colors.white,
+          ),
         ),
       ),
     );

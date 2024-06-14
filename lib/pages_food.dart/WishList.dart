@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/foods.dart';
-import 'package:uas/screens/detailscreen.dart';
+import 'package:uas/pages_food.dart/detailscreen.dart';
 
 class WishList extends StatelessWidget {
   const WishList({super.key});
@@ -9,29 +9,37 @@ class WishList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(useMaterial3: false),
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text("WishList"),
-            centerTitle: true,
-            leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                }),
-            actions: [
-              IconButton(
+      theme: ThemeData(useMaterial3: false),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("WishList"),
+          centerTitle: true,
+          leading: Tooltip(
+            message: 'Back',
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ),
+          actions: [
+            Tooltip(
+              message: 'Home',
+              child: IconButton(
                 icon: const Icon(Icons.home),
                 onPressed: () {
                   Navigator.of(context).popUntil((route) => route.isFirst);
                 },
               ),
-            ],
-          ),
-          body: SingleChildScrollView(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Consumer<FoodListManager>(
@@ -127,21 +135,24 @@ class WishList extends StatelessWidget {
                                   Positioned(
                                     bottom: 0,
                                     right: 0,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        context
-                                            .read<FoodListManager>()
-                                            .removeWish(wishlist);
-                                      },
-                                      child: Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
-                                        size: 26,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        shape: const CircleBorder(),
-                                        padding: const EdgeInsets.all(10),
-                                        backgroundColor: Colors.white,
+                                    child: Tooltip(
+                                      message: 'Hapus dari Wishlist',
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          context
+                                              .read<FoodListManager>()
+                                              .removeWish(wishlist);
+                                        },
+                                        child: Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                          size: 26,
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(10),
+                                          backgroundColor: Colors.white,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -155,8 +166,10 @@ class WishList extends StatelessWidget {
                   },
                 ),
               )
-            ]),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
