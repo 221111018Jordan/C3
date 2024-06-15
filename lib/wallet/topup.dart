@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uas/data/theme.dart';
 import 'package:uas/pages/register.dart';
 import 'package:uas/screens/buttonNavBar.dart';
 import 'package:uas/wallet/wallet.dart';
@@ -104,7 +105,9 @@ class _WalletupState extends State<Walletup> {
                 child: Text(
               "Harus berisi angka ",
               style: TextStyle(
-                color: errorActive ? Colors.red : Colors.white,
+                color: errorActive ? Colors.red : Provider.of<themeManager>(context).mode
+                                  ? Colors.black
+                                  : Colors.white,
               ),
             )),
             SizedBox(
@@ -112,7 +115,9 @@ class _WalletupState extends State<Walletup> {
               width: 300,
               child: widget.isLoading ? const Center(
                 child: CircularProgressIndicator(),
-              ):Text("nothing",style: TextStyle(color: Colors.white),)),
+              ):Text("nothing",style: TextStyle(color: Provider.of<themeManager>(context).mode
+                                  ? Colors.black
+                                  : Colors.white,),)),
           ],
         ),
       ),
