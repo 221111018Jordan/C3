@@ -116,7 +116,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                         "${widget.data.text} berhasil ditambahkan ke Wishlist",
                                         style: TextStyle(color: Colors.white),
                                       ),
-                                      backgroundColor: Colors.red,
+                                      backgroundColor: Colors.green,
                                       duration: Duration(milliseconds: 800),
                                     ),
                                   );
@@ -165,7 +165,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                         '${widget.data.text} berhasil ditambahkan ke keranjang',
                                         style: TextStyle(color: Colors.white),
                                       ),
-                                      backgroundColor: Colors.red,
+                                      backgroundColor: Colors.green,
                                       duration: Duration(milliseconds: 800),
                                     ),
                                   );

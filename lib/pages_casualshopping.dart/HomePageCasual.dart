@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:uas/FoodInCategory.dart/DetailScreenCasual.dart';
 import 'package:uas/data/cartprovider.dart';
 import 'package:uas/pages_casualshopping.dart/CartCasual.dart';
 import 'package:uas/widget/DrawerWidget.dart';
@@ -168,10 +169,14 @@ class _HomePageCasualState extends State<HomePageCasual> {
         ),
         drawer: DrawerWidget(),
         body: data().isNotEmpty
-            ? Column(
+            ? ListView(
                 children: data().map((e) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => DetailScreenCasual(item: e),
+                      ));
+                    },
                     child: Card(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -184,26 +189,29 @@ class _HomePageCasualState extends State<HomePageCasual> {
                             SizedBox(
                               width: 20,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  e['title'],
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    e['title'],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  e['subtitle'],
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 12,
+                                  Text(
+                                    e['subtitle'],
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 12,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                            Row(
+                            SizedBox(width: 10),
+                            Column(
                               children: [
                                 Text(
                                   e['harga'].toString(),
@@ -244,13 +252,9 @@ class _HomePageCasualState extends State<HomePageCasual> {
                   );
                 }).toList(),
               )
-            : TabBarView(
-                children: [
-                  Tab(
-                    child: Text(
-                        "${content[_currentIndex]['screen']} ${content[_currentIndex]['contents'][_currentBottomIndex]['tab']} Kosong"),
-                  )
-                ],
+            : Center(
+                child: Text(
+                    "${content[_currentIndex]['screen']} ${content[_currentIndex]['contents'][_currentBottomIndex]['tab']} Kosong"),
               ),
         floatingActionButton: Tooltip(
           message: 'Pergi Ke Keranjang',

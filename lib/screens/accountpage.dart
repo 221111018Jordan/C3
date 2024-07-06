@@ -26,9 +26,7 @@ class _AccountPageState extends State<AccountPage> {
 
   _getImageFromGallery() async {
     XFile? pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.camera,
-      maxHeight: 500,
-      maxWidth: 500,
+      source: ImageSource.gallery,
     );
     if (pickedFile != null) {
       setState(() {
@@ -60,7 +58,6 @@ class _AccountPageState extends State<AccountPage> {
                           message: 'Foto Profil',
                           child: CircleAvatar(
                             child: SizedBox(
-                              height: 200,
                               child: _imagePath == null
                                   ? Center(
                                       child: Image.asset("images/avatar.jpg"),

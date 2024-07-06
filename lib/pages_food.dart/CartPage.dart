@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/foods.dart';
 import 'package:uas/data/theme.dart';
-import 'package:uas/pages_food.dart/detailscreen.dart';
+import 'package:uas/pages_food.dart/Detailscreen.dart';
 import 'package:uas/widget/CartBottomNavbar.dart';
 
 class CartPage extends StatelessWidget {

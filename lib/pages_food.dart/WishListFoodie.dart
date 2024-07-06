@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/foods.dart';
-import 'package:uas/pages_food.dart/detailscreen.dart';
+import 'package:uas/pages_food.dart/Detailscreen.dart';
 
 class WishList extends StatelessWidget {
   const WishList({super.key});
@@ -13,7 +13,7 @@ class WishList extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("WishList"),
+          title: const Text("WishList Foodies"),
           centerTitle: true,
           leading: Tooltip(
             message: 'Back',

@@ -2,19 +2,31 @@ import 'package:flutter/material.dart';
 
 class CartProvider with ChangeNotifier {
   List<Map<String, dynamic>> _cartItems = [];
+  List<Map<String, dynamic>> _wishListItems = [];
 
   List<Map<String, dynamic>> get cartItems => _cartItems;
+  List<Map<String, dynamic>> get wishListItems => _wishListItems;
+
+  void addToWishList(Map<String, dynamic> item) {
+    if (!_wishListItems.contains(item)) {
+      _wishListItems.add(item);
+      notifyListeners();
+    }
+  }
+
+  void removeWishList(Map<String, dynamic> item) {
+    _wishListItems.remove(item);
+    notifyListeners();
+  }
 
   void addToCart(Map<String, dynamic> item) {
-    bool alreadyInCart =
-        _cartItems.contains(item);
+    bool alreadyInCart = _cartItems.contains(item);
 
     if (alreadyInCart) {
-      int index = _cartItems
-          .indexOf(item);
+      int index = _cartItems.indexOf(item);
       increaseQuantity(index);
     } else {
-      // Jika belum ada, tambahkan ke keranjang
+      item['quantity'] = 1; // Set initial quantity to 1
       _cartItems.add(item);
       notifyListeners();
     }
@@ -30,7 +42,7 @@ class CartProvider with ChangeNotifier {
       _cartItems[index]['quantity']++;
       notifyListeners();
     } else {
-      ClearItems();
+      clearItems();
     }
   }
 
@@ -45,7 +57,7 @@ class CartProvider with ChangeNotifier {
     }
   }
 
-  void ClearItems() {
+  void clearItems() {
     _cartItems = [];
     notifyListeners();
   }

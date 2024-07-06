@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:uas/data/foods.dart';
 import 'package:uas/data/theme.dart';
 import 'package:uas/pages_food.dart/CartPage.dart';
-import 'package:uas/pages_food.dart/detailscreen.dart';
+import 'package:uas/pages_food.dart/Detailscreen.dart';
 
 class FoodieList extends StatefulWidget {
   FoodieList({super.key, required this.kategori});

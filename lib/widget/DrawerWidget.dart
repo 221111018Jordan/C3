@@ -5,7 +5,7 @@ import 'package:uas/components/users.dart';
 import 'package:uas/data/theme.dart';
 import 'package:uas/pages/login_page.dart';
 import 'package:uas/pages_food.dart/CartPage.dart';
-import 'package:uas/pages_food.dart/WishList.dart';
+import 'package:uas/pages_food.dart/WishListFoodie.dart';
 import 'package:uas/screens/buttonNavBar.dart';
 
 class DrawerWidget extends StatelessWidget {

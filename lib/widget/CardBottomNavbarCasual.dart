@@ -127,7 +127,7 @@ class _CartBottomNavbarCasualState extends State<CartBottomNavbarCasual> {
                                       TextButton(
                                         onPressed: () {
                                           wallet.pay(cartTotal);
-                                          cartProvider.ClearItems();
+                                          cartProvider.clearItems();
                                           Navigator.of(context).pop();
                                           ScaffoldMessenger.of(context).showSnackBar(
                                             SnackBar(
@@ -169,7 +169,7 @@ class _CartBottomNavbarCasualState extends State<CartBottomNavbarCasual> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        cartProvider.ClearItems();
+                                        cartProvider.clearItems();
                                         Navigator.of(context).pop();
                                         ScaffoldMessenger.of(context).showSnackBar(
                                           SnackBar(
