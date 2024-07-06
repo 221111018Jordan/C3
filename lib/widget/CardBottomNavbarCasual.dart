@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/cartprovider.dart';
+import 'package:uas/pages_casualshopping.dart/DateScreenCasual.dart';
 import 'package:uas/wallet/wallet.dart';
 
 class CartBottomNavbarCasual extends StatefulWidget {
@@ -133,6 +134,9 @@ class _CartBottomNavbarCasualState extends State<CartBottomNavbarCasual> {
                                               content: Text('Pembayaran berhasil menggunakan saldo.'),
                                             ),
                                           );
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) => DateCasual(),));
                                         },
                                         child: const Text("Lanjut"),
                                       ),
