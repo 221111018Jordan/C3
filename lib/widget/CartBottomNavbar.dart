@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/foods.dart';
+import 'package:uas/pages_food.dart/DateScreens.dart';
 import 'package:uas/wallet/wallet.dart';
 import 'package:intl/intl.dart';
 
@@ -133,7 +134,10 @@ class _CartBottomNavbarState extends State<CartBottomNavbar> {
                                               content: Text('Pembayaran berhasil menggunakan saldo.'),
                                             ),
                                           );
-                                        },
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) => DateScreen(),));
+                                          },
                                         child: const Text("Lanjut"),
                                       ),
                                     ],
