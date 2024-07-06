@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/components/users.dart';
 import 'package:uas/data/theme.dart';
@@ -20,6 +22,21 @@ class _AccountPageState extends State<AccountPage> {
   List<double> _value = [0, 0, 255, 200, 175];
   double _max = 255;
 
+  String? _imagePath;
+
+  _getImageFromGallery() async {
+    XFile? pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+      maxHeight: 500,
+      maxWidth: 500,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        _imagePath = pickedFile.path;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +46,10 @@ class _AccountPageState extends State<AccountPage> {
           child: Column(
             children: [
               Container(
-                width: _value[3] ,
-                height:_value[4] , 
-                color: Color.fromARGB(255, _value[0].toInt(), _value[1].toInt(), _value[2].toInt()),
+                width: _value[3],
+                height: _value[4],
+                color: Color.fromARGB(255, _value[0].toInt(), _value[1].toInt(),
+                    _value[2].toInt()),
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -39,12 +57,19 @@ class _AccountPageState extends State<AccountPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Tooltip(
-                        message: 'Foto Profil',
-                        child: CircleAvatar(
-                          child: Image.asset("images/avatar.jpg"),
-                          radius: 50,
-                        ),
-                      ),
+                          message: 'Foto Profil',
+                          child: CircleAvatar(
+                            child: SizedBox(
+                              height: 200,
+                              child: _imagePath == null
+                                  ? Center(
+                                      child: Image.asset("images/avatar.jpg"),
+                                    )
+                                  : Image.file(
+                                      File(_imagePath!),
+                                    ),
+                            ),
+                          )),
                       Column(
                         children: [
                           Text(
@@ -78,6 +103,7 @@ class _AccountPageState extends State<AccountPage> {
                   leading: Icon(Icons.settings),
                   title: Text("Change Color"),
                   children: [
+                    Text("RED"),
                     Slider(
                       value: _value[0],
                       activeColor: Colors.red,
@@ -90,6 +116,7 @@ class _AccountPageState extends State<AccountPage> {
                         });
                       },
                     ),
+                    Text("GREEN"),
                     Slider(
                       value: _value[1],
                       activeColor: Colors.green,
@@ -102,6 +129,7 @@ class _AccountPageState extends State<AccountPage> {
                         });
                       },
                     ),
+                    Text("BLUE"),
                     Slider(
                       value: _value[2],
                       activeColor: Colors.blue,
@@ -114,11 +142,12 @@ class _AccountPageState extends State<AccountPage> {
                         });
                       },
                     ),
+                    Text("WIDTH"),
                     Slider(
                       value: _value[3],
                       activeColor: Provider.of<themeManager>(context).mode
-                                  ? Colors.white
-                                  : Colors.black,
+                          ? Colors.white
+                          : Colors.black,
                       min: 200,
                       max: 1235,
                       divisions: 1235,
@@ -129,11 +158,12 @@ class _AccountPageState extends State<AccountPage> {
                         });
                       },
                     ),
+                    Text("HEIGHT"),
                     Slider(
                       value: _value[4],
                       activeColor: Provider.of<themeManager>(context).mode
-                                  ? Colors.white
-                                  : Colors.black,
+                          ? Colors.white
+                          : Colors.black,
                       min: 175,
                       max: 300,
                       divisions: 300,
@@ -227,6 +257,18 @@ class _AccountPageState extends State<AccountPage> {
               ),
               SizedBox(height: 12),
               Card(
+                child: Tooltip(
+                    message: 'Ganti Gambar',
+                    child: ListTile(
+                      leading: Icon(Icons.image),
+                      title: Text("Change image"),
+                      trailing: IconButton(
+                          onPressed: _getImageFromGallery,
+                          icon: Icon(Icons.arrow_forward)),
+                    )),
+              ),
+              SizedBox(height: 12),
+              Card(
                 child: ListTile(
                   leading: Tooltip(
                     message: 'Alamat',
@@ -253,7 +295,6 @@ class _AccountPageState extends State<AccountPage> {
                               ),
                               Row(
                                 children: [
-                                  Spacer(),
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
@@ -302,10 +343,10 @@ class _AccountPageState extends State<AccountPage> {
                           isScrollControlled: true,
                           builder: (context) {
                             return Container(
-                              height: 350,
+                              height: 300,
                               child: Column(
                                 children: [
-                                  SizedBox(height: 10),
+                                  SizedBox(height: 24),
                                   Text(
                                       "This is our project together, containing personal data of each member"),
                                   ListTile(
