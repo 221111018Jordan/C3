@@ -45,7 +45,9 @@ class WishList extends StatelessWidget {
                 child: Consumer<FoodListManager>(
                   builder: (context, value, child) {
                     return Column(
-                      children: value.WishList.asMap().entries.map((entry) {
+                      children: value.WishList.
+                      asMap().entries
+                      .map((entry) {
                         final wishlist = entry.value;
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
@@ -131,6 +133,54 @@ class WishList extends StatelessWidget {
                                         ),
                                       ),
                                     ],
+                                  ),
+                                  Positioned(
+                                    top: 0,
+                                    right: 0,
+                                    child: Tooltip(
+                                      message: 'Tambahkan ke Keranjang',
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          final foodListManager = context.read<FoodListManager>();
+                                          if (foodListManager.CardList.contains(wishlist)) {
+                                            foodListManager.removeChart(wishlist);
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Makanan berhasil dihapus dari keranjang',
+                                                  style: TextStyle(color: Colors.white),
+                                                ),
+                                                backgroundColor: Colors.red,
+                                                duration: Duration(milliseconds: 800),
+                                              ),
+                                            );
+                                          } else {
+                                            foodListManager.addChart(wishlist);
+                                            context.read<FoodListManager>().removeWish(wishlist);
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Makanan berhasil ditambahkan ke keranjang',
+                                                  style: TextStyle(color: Colors.white),
+                                                ),
+                                                backgroundColor: Colors.green,
+                                                duration: Duration(milliseconds: 800),
+                                              ),
+                                            );
+                                          }
+                                        },
+                                        child: Icon(
+                                          Icons.shopping_cart,
+                                          color: context.read<FoodListManager>().CardList.contains(wishlist) ? Colors.red : Colors.grey,
+                                          size: 26,
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          shape: const CircleBorder(),
+                                          padding: const EdgeInsets.all(10),
+                                          backgroundColor: Colors.white,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                   Positioned(
                                     bottom: 0,

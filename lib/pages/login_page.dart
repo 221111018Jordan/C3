@@ -21,10 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
 
-  void initState() {
-    errorActive = false;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

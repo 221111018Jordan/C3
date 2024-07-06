@@ -9,14 +9,14 @@ final usernameController = TextEditingController();
 final emailController = TextEditingController();
 final addressController = TextEditingController();
 
-class accountpage extends StatefulWidget {
-  const accountpage({super.key});
+class AccountPage extends StatefulWidget {
+  const AccountPage({super.key});
 
   @override
-  State<accountpage> createState() => _accountpageState();
+  State<AccountPage> createState() => _AccountPageState();
 }
 
-class _accountpageState extends State<accountpage> {
+class _AccountPageState extends State<AccountPage> {
   List<double> _value = [0, 0, 255, 200, 175];
   double _max = 255;
 
@@ -253,6 +253,7 @@ class _accountpageState extends State<accountpage> {
                               ),
                               Row(
                                 children: [
+                                  Spacer(),
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
@@ -301,10 +302,10 @@ class _accountpageState extends State<accountpage> {
                           isScrollControlled: true,
                           builder: (context) {
                             return Container(
-                              height: 300,
+                              height: 350,
                               child: Column(
                                 children: [
-                                  SizedBox(height: 24),
+                                  SizedBox(height: 10),
                                   Text(
                                       "This is our project together, containing personal data of each member"),
                                   ListTile(

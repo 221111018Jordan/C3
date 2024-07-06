@@ -2,7 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/components/users.dart';
+import 'package:uas/data/theme.dart';
 import 'package:uas/pages/login_page.dart';
+import 'package:uas/pages_food.dart/CartPage.dart';
+import 'package:uas/pages_food.dart/WishList.dart';
+import 'package:uas/screens/buttonNavBar.dart';
 
 class DrawerWidget extends StatelessWidget {
   DrawerWidget({Key? key});
@@ -43,7 +47,11 @@ class DrawerWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, "homepage");
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => bottonnav(
+                          currentIndex:
+                              Provider.of<themeManager>(context).currentIndex,
+                        )));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Warna latar belakang
@@ -69,7 +77,12 @@ class DrawerWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
             child: ElevatedButton(
               onPressed: () {
-                // Lakukan aksi saat tombol "My Account" ditekan
+                Provider.of<themeManager>(context, listen: false).currentIndex = 2;
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => bottonnav(
+                          currentIndex:
+                              Provider.of<themeManager>(context, listen: false).currentIndex,
+                        )));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Warna latar belakang
@@ -95,7 +108,8 @@ class DrawerWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
             child: ElevatedButton(
               onPressed: () {
-                // Lakukan aksi saat tombol "My Orders" ditekan
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => CartPage()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Warna latar belakang
@@ -121,7 +135,8 @@ class DrawerWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, "wishlist");
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => WishList()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Warna latar belakang
@@ -147,11 +162,8 @@ class DrawerWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) {
-                    return LoginPage(); // Ganti HalamanBaru dengan nama halaman yang ingin ditampilkan
-                  },
-                ));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => LoginPage()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Warna latar belakang

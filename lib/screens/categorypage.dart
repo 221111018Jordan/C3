@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:uas/pages_casualshopping.dart/HomePageCasual.dart';
+import 'package:uas/pages_food.dart/CartPage.dart';
 import 'package:uas/widget/CategoriesWidget.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -150,7 +151,8 @@ class CategoryPage extends StatelessWidget {
           message: 'Cek Keranjang',
           child: FloatingActionButton(
             onPressed: () {
-              Navigator.pushNamed(context, "cartPage");
+              Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => CartPage()));
             },
             child: const Icon(
               Icons.shopping_cart,

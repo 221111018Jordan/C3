@@ -19,7 +19,7 @@ class Homepage extends StatelessWidget {
           height: double.infinity,
           width: 700,
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(5.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -34,7 +34,7 @@ class Homepage extends StatelessWidget {
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.all(5.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -52,7 +52,7 @@ class Homepage extends StatelessWidget {
                           builder: (context, value, child) => Text(
                             "Saldomu : ${context.watch<Wallet>().formattedSaldo}",
                             style: TextStyle(
-                                fontSize: 28, fontWeight: FontWeight.bold),
+                                fontSize: 17, fontWeight: FontWeight.bold),
                           ),
                         ),
                         Tooltip(

@@ -5,6 +5,7 @@ import 'package:uas/FoodInCategory.dart/listMakanPage.dart';
 import 'package:uas/data/foods.dart';
 import 'package:uas/data/theme.dart';
 import 'package:uas/models/foodModel.dart';
+import 'package:uas/pages_food.dart/CartPage.dart';
 import 'package:uas/screens/buttonNavBar.dart';
 import 'package:uas/widget/DrawerWidget.dart';
 
@@ -169,7 +170,7 @@ class _HomePageFoodState extends State<HomePageFood> {
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => BreadList(kategori: element.kategori),
+                                builder: (context) => FoodieList(kategori: element.kategori),
                               ),
                             );
                           },
@@ -237,7 +238,8 @@ class _HomePageFoodState extends State<HomePageFood> {
           ),
           child: FloatingActionButton(
             onPressed: () {
-              Navigator.pushNamed(context, "cartPage");
+              Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => CartPage()));
             },
             child: Icon(
               Icons.shopping_cart,

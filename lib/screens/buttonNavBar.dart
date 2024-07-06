@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 bool lokasi = true;
 
-// ignore: must_be_immutable, camel_case_types
+// ignore: must_be_immutable
 class bottonnav extends StatefulWidget {
   bottonnav({super.key, required this.currentIndex});
 
@@ -20,12 +20,8 @@ class bottonnav extends StatefulWidget {
 }
 
 class _bottonnavState extends State<bottonnav> {
-  final List<Widget> bodyContent = [Homepage(), CategoryPage(), accountpage()];
-  // void moveNav(int index) {
-  //   setState(() {
-  //     widget.currentIndex = index;
-  //   });
-  // }
+  final List<Widget> bodyContent = [Homepage(), CategoryPage(), AccountPage()];
+  
 
   List<String> title = ["Home", "Category Shopping", "Accounts"];
   String? _selectedValue;

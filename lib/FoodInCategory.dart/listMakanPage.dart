@@ -5,16 +5,16 @@ import 'package:uas/data/theme.dart';
 import 'package:uas/pages_food.dart/CartPage.dart';
 import 'package:uas/pages_food.dart/detailscreen.dart';
 
-class BreadList extends StatefulWidget {
-  BreadList({super.key, required this.kategori});
+class FoodieList extends StatefulWidget {
+  FoodieList({super.key, required this.kategori});
 
   final String kategori;
 
   @override
-  _BreadListState createState() => _BreadListState();
+  _FoodieListState createState() => _FoodieListState();
 }
 
-class _BreadListState extends State<BreadList> {
+class _FoodieListState extends State<FoodieList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,7 +152,32 @@ class _BreadListState extends State<BreadList> {
                                     message: 'Tambahkan ke WishList',
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        context.read<FoodListManager>().addWish(e);
+                                        setState(() {
+                                          if (value.WishList.contains(e)) {
+                                            context.read<FoodListManager>().removeWish(e);
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(
+                                                content: Text("Makanan berhasil di hapus dari wishlist",
+                                                style: TextStyle(color: Colors.white),
+                                                ),
+                                                backgroundColor: Colors.red,
+                                                duration: Duration(seconds: 1),
+                                                )
+                                            );
+                                          } else {
+                                            context.read<FoodListManager>().addWish(e);
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                "Makanan berhasil di tambahkan ke wishlist",
+                                                style: TextStyle(color: Colors.white),
+                                                ),
+                                                backgroundColor: Colors.green,
+                                                duration: Duration(seconds: 1),
+                                                ),
+                                            );
+                                          }
+                                        });
                                       },
                                       child: Icon(
                                         Icons.favorite,
@@ -174,17 +199,33 @@ class _BreadListState extends State<BreadList> {
                                     message: 'Tambahkan ke Keranjang',
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        context.read<FoodListManager>().addChart(e);
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Makanan berhasil ditambahkan ke keranjang',
-                                              style: TextStyle(color: Colors.white),
-                                            ),
-                                            backgroundColor: Colors.green,
-                                            duration: Duration(milliseconds: 800),
-                                          ),
-                                        );
+                                        setState(() {
+                                          if (value.CardList.contains(e)) {
+                                            context.read<FoodListManager>().removeChart(e);
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Makanan berhasil dihapus dari keranjang',
+                                                  style: TextStyle(color: Colors.white),
+                                                ),
+                                                backgroundColor: Colors.red,
+                                                duration: Duration(seconds: 1),
+                                              ),
+                                            );
+                                          } else {
+                                            context.read<FoodListManager>().addChart(e);
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Makanan berhasil ditambahkan ke keranjang',
+                                                  style: TextStyle(color: Colors.white),
+                                                ),
+                                                backgroundColor: Colors.green,
+                                                duration: Duration(seconds: 1),
+                                              ),
+                                            );
+                                          }
+                                        });
                                       },
                                       child: Icon(
                                         Icons.shopping_cart,

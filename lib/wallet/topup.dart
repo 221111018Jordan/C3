@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/theme.dart';
-import 'package:uas/pages/register.dart';
 import 'package:uas/screens/buttonNavBar.dart';
 import 'package:uas/wallet/wallet.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class Walletup extends StatefulWidget {
   Walletup({super.key});
   bool isLoading = false;
@@ -111,7 +111,7 @@ class _WalletupState extends State<Walletup> {
               ),
             )),
             SizedBox(
-              height: 300,
+              height: 150,
               width: 300,
               child: widget.isLoading ? const Center(
                 child: CircularProgressIndicator(),
