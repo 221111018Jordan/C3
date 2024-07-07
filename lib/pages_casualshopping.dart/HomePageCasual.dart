@@ -186,7 +186,7 @@ class _HomePageCasualState extends State<HomePageCasual> {
                           children: [
                             SizedBox(
                               width: 50,
-                              child: Image.network(e['cover']),
+                              child: Image.file(e['cover']),
                             ),
                             SizedBox(
                               width: 20,

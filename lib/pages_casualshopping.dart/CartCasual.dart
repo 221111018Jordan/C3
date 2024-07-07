@@ -76,7 +76,7 @@ class CasualCartPage extends StatelessWidget {
                                         bottomLeft: Radius.circular(10),
                                       ),
                                       image: DecorationImage(
-                                        image: NetworkImage(item['cover']),
+                                        image: FileImage(item['cover']),
                                         fit: BoxFit.contain,
                                       ),
                                     ),

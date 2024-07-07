@@ -112,7 +112,7 @@ class WishListCasual extends StatelessWidget {
                                                           Radius.circular(10),
                                                     ),
                                                     image: DecorationImage(
-                                                      image: NetworkImage(
+                                                      image: FileImage(
                                                           wishlistItem[
                                                               'cover']),
                                                       fit: BoxFit.contain,

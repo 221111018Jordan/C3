@@ -56,7 +56,7 @@ class _DetailScreenCasualState extends State<DetailScreenCasual> {
                   height: 250,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(widget.item['cover']),
+                      image: FileImage(widget.item['cover']),
                       fit: BoxFit.fill,
                     ),
                     borderRadius: BorderRadius.circular(10),

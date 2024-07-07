@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "C3 Project UAS",
       theme: ThemeData.light(useMaterial3: true),
       darkTheme: ThemeData.dark(),
       themeMode: Provider.of<themeManager>(context).mode
