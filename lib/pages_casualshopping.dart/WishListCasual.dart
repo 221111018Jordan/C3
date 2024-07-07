@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uas/data/foods.dart';
-import 'package:uas/pages_food.dart/Detailscreen.dart';
+import 'package:uas/data/cartprovider.dart';
+import 'package:uas/pages_casualshopping.dart/DetailScreenCasual.dart';
 
-class WishList extends StatelessWidget {
-  const WishList({super.key});
+class WishListCasual extends StatelessWidget {
+  const WishListCasual({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class WishList extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("WishList Foodies"),
+          title: const Text("WishList Casual Shopping"),
           centerTitle: true,
           leading: Tooltip(
             message: 'Back',
@@ -41,20 +41,23 @@ class WishList extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(20),
-                child: Consumer<FoodListManager>(
-                  builder: (context, value, child) {
+                child: Consumer<CartProvider>(
+                  builder: (context, cartProvider, child) {
+                    if (cartProvider.wishListItems.isEmpty) {
+                      return const Center(
+                        child: Text("Wishlist Anda kosong"),
+                      );
+                    }
                     return Column(
-                      children: value.WishList.
-                      asMap().entries
-                      .map((entry) {
-                        final wishlist = entry.value;
+                      children: cartProvider.wishListItems
+                          .map((wishlistItem) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => DetailScreen(
-                                        data: wishlist,
+                                  builder: (context) => DetailScreenCasual(
+                                        item: wishlistItem,
                                       )));
                             },
                             child: Container(
@@ -84,8 +87,7 @@ class WishList extends StatelessWidget {
                                             bottomLeft: Radius.circular(10),
                                           ),
                                           image: DecorationImage(
-                                            image:
-                                                AssetImage(wishlist.imagePath),
+                                            image: NetworkImage(wishlistItem['cover']),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -99,7 +101,7 @@ class WishList extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                wishlist.text,
+                                                wishlistItem['title'],
                                                 style: const TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold,
@@ -107,21 +109,14 @@ class WishList extends StatelessWidget {
                                               ),
                                               const SizedBox(height: 5),
                                               Text(
-                                                "Taste our ${wishlist.text}",
+                                                wishlistItem['subtitle'],
                                                 style: const TextStyle(
-                                                  fontSize: 10,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 5),
-                                              const Text(
-                                                "We provide our great Foodie",
-                                                style: TextStyle(
                                                   fontSize: 10,
                                                 ),
                                               ),
                                               const SizedBox(height: 20),
                                               Text(
-                                                "Price: ${wishlist.harga}",
+                                                "Price: ${wishlistItem['harga']}",
                                                 style: const TextStyle(
                                                   fontSize: 15,
                                                 ),
@@ -140,37 +135,38 @@ class WishList extends StatelessWidget {
                                       message: 'Tambahkan ke Keranjang',
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          final foodListManager = context.read<FoodListManager>();
-                                          if (foodListManager.CardList.contains(wishlist)) {
-                                            foodListManager.removeChart(wishlist);
+                                          if (cartProvider.cartItems.contains(wishlistItem)) {
+                                            cartProvider.removeFromCart(wishlistItem);
                                             ScaffoldMessenger.of(context).showSnackBar(
                                               SnackBar(
-                                                content: Text(
+                                                content: const Text(
                                                   'Makanan berhasil dihapus dari keranjang',
                                                   style: TextStyle(color: Colors.white),
                                                 ),
                                                 backgroundColor: Colors.red,
-                                                duration: Duration(milliseconds: 800),
+                                                duration: const Duration(milliseconds: 800),
                                               ),
                                             );
                                           } else {
-                                            foodListManager.addChart(wishlist);
-                                            // context.read<FoodListManager>().removeWish(wishlist);
+                                            cartProvider.addToCart(wishlistItem);
+                                            // cartProvider.removeWishList(wishlistItem);
                                             ScaffoldMessenger.of(context).showSnackBar(
                                               SnackBar(
-                                                content: Text(
+                                                content: const Text(
                                                   'Makanan berhasil ditambahkan ke keranjang',
                                                   style: TextStyle(color: Colors.white),
                                                 ),
                                                 backgroundColor: Colors.green,
-                                                duration: Duration(milliseconds: 800),
+                                                duration: const Duration(milliseconds: 800),
                                               ),
                                             );
                                           }
                                         },
                                         child: Icon(
                                           Icons.shopping_cart,
-                                          color: context.read<FoodListManager>().CardList.contains(wishlist) ? Colors.red : Colors.grey,
+                                          color: cartProvider.cartItems.contains(wishlistItem)
+                                              ? Colors.red
+                                              : Colors.grey,
                                           size: 26,
                                         ),
                                         style: ElevatedButton.styleFrom(
@@ -188,11 +184,19 @@ class WishList extends StatelessWidget {
                                       message: 'Hapus dari Wishlist',
                                       child: ElevatedButton(
                                         onPressed: () {
-                                          context
-                                              .read<FoodListManager>()
-                                              .removeWish(wishlist);
+                                          cartProvider.removeWishList(wishlistItem);
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: const Text(
+                                                'Makanan berhasil dihapus dari wishlist',
+                                                style: TextStyle(color: Colors.white),
+                                              ),
+                                              backgroundColor: Colors.red,
+                                              duration: const Duration(milliseconds: 800),
+                                            ),
+                                          );
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.delete,
                                           color: Colors.red,
                                           size: 26,

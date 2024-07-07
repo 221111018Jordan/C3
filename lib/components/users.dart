@@ -3,6 +3,8 @@ import 'package:uas/models/users.dart';
 
 
 class userListManager with ChangeNotifier {
+  
+  bool isLogin = false;
   List<userModels> listUsers = [
     userModels(username: "a", email: "a", passwd: "a"),
     userModels(username: "testing", email: "test@gmail.com", passwd: "12345678"),
@@ -36,8 +38,14 @@ class userListManager with ChangeNotifier {
     }
     return true;
   }
-  
+
+    void changePFP(value) {
+    currentUser.pfp = value;
+    notifyListeners();
+  }
+
   void changeUser(value){
     currentUser = value;
+    isLogin = true;
   }
 }

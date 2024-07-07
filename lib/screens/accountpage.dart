@@ -39,7 +39,7 @@ class _AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
+        child: Consumer<userListManager>(builder: (context, value, child) {return Padding(
           padding: const EdgeInsets.all(12),
           child: Column(
             children: [
@@ -58,10 +58,9 @@ class _AccountPageState extends State<AccountPage> {
                           message: 'Foto Profil',
                           child: CircleAvatar(
                             child: SizedBox(
-                              child: _imagePath == null
-                                  ? Center(
-                                      child: Image.asset("images/avatar.jpg"),
-                                    )
+                              child: 
+                              _imagePath == null
+                                  ? null
                                   : Image.file(
                                       File(_imagePath!),
                                     ),
@@ -397,8 +396,8 @@ class _AccountPageState extends State<AccountPage> {
               ),
             ],
           ),
-        ),
+        );}
       ),
-    );
+    ));
   }
 }

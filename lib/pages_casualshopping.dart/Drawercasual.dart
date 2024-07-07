@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:uas/components/users.dart';
 import 'package:uas/data/theme.dart';
 import 'package:uas/pages/login_page.dart';
-import 'package:uas/pages_food.dart/CartPage.dart';
-import 'package:uas/pages_food.dart/WishListFoodie.dart';
+import 'package:uas/pages_casualshopping.dart/CartCasual.dart';
+import 'package:uas/pages_casualshopping.dart/WishListCasual.dart';
 import 'package:uas/screens/buttonNavBar.dart';
 
-class DrawerWidget extends StatelessWidget {
-  DrawerWidget({Key? key});
+class DrawerCasual extends StatelessWidget {
+  DrawerCasual({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -115,8 +115,8 @@ class DrawerWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => CartPage()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => CasualCartPage()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Warna latar belakang
@@ -142,8 +142,8 @@ class DrawerWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => WishList()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => WishListCasual()));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Warna latar belakang

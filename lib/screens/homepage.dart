@@ -24,7 +24,7 @@ class Homepage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 70,
+                  height: 80,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 153, 151, 221),
@@ -47,9 +47,9 @@ class Homepage extends StatelessWidget {
                         ),
                         Consumer<Wallet>(
                             builder: (context, value, child) => Text(
-                                  "Saldomu : Rp. ${value.saldo}",
+                                  "Saldomu : \n Rp.${value.saldo}",
                                   style: TextStyle(
-                                      fontSize: 28,
+                                      fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 )),
                         ElevatedButton.icon(

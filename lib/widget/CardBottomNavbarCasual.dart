@@ -37,7 +37,7 @@ class _CartBottomNavbarCasualState extends State<CartBottomNavbarCasual> {
                       totalPrice += item['harga'] * item['quantity'];
                     }
                     return Text(
-                      "Checkout Rp. $totalPrice",
+                      "Checkout \nRp.$totalPrice",
                       style: TextStyle(
                         fontSize: 19,
                         fontWeight: FontWeight.bold,

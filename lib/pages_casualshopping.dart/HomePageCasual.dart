@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uas/FoodInCategory.dart/DetailScreenCasual.dart';
+import 'package:uas/pages_casualshopping.dart/DetailScreenCasual.dart';
 import 'package:uas/data/cartprovider.dart';
 import 'package:uas/pages_casualshopping.dart/CartCasual.dart';
-import 'package:uas/widget/DrawerWidget.dart';
+import 'package:uas/pages_casualshopping.dart/Drawercasual.dart';
 
 class HomePageCasual extends StatefulWidget {
   HomePageCasual({super.key});
@@ -167,7 +167,7 @@ class _HomePageCasualState extends State<HomePageCasual> {
             }).toList(),
           ),
         ),
-        drawer: DrawerWidget(),
+        drawer: DrawerCasual(),
         body: data().isNotEmpty
             ? ListView(
                 children: data().map((e) {
