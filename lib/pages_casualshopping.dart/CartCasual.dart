@@ -38,7 +38,7 @@ class CasualCartPage extends StatelessWidget {
           return cartProvider.cartItems.isEmpty
               ? Center(
                   child: Text(
-                    'Keranjang belanja kosong',
+                    'Keranjang belanja Casual kosong',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 )

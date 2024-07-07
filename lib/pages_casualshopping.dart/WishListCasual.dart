@@ -45,7 +45,7 @@ class WishListCasual extends StatelessWidget {
                   if (value.wishListItems.isEmpty) {
                     return Center(
                       child: Text(
-                        "Wishlist Belanja Kosong",
+                        "Wishlist Belanja Casual Kosong",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),

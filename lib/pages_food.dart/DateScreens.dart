@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:uas/pages_food.dart/CartPage.dart';
+import 'package:uas/pages_food.dart/HomePageFood.dart';
 
 class DateScreen extends StatefulWidget {
   const DateScreen({super.key});
@@ -52,118 +52,120 @@ class _DateScreenState extends State<DateScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "Thank you for buying, when would you like to take your order?",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Thank you for buying, when would you like to take your order?",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.justify,
                 ),
-                textAlign: TextAlign.justify,
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  _selectDate(context);
-                },
-                child: Text(
-                  _selectedDate == null
-                      ? 'pilih tanggal'
-                      : DateFormat.yMMMd().format(_selectedDate!),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    _selectDate(context);
+                  },
+                  child: Text(
+                    _selectedDate == null
+                        ? 'pilih tanggal'
+                        : DateFormat.yMMMd().format(_selectedDate!),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  _selectTime(context);
-                },
-                child: Text(
-                  selected_time == null
-                      ? 'pilih waktu'
-                      : "${selected_time!.hour}: ${selected_time!.minute.toString().padLeft(2, '0')}",
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-              SizedBox(height: 40),
-              Container(
-                child: Column(
-                  children: [
-                    Center(child: Text("Silakan pilih metode pengiriman",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28))),
-                    RadioListTile(
-                      value: "Gojek",
-                      groupValue: pilihan,
-                      subtitle: Text(
-                          "Pengantaran akan di lakukan melalui pilihan ini"),
-                      onChanged: (value) {
-                        setState(() {
-                          pilihan = value;
-                        });
-                      },
-                      title: Text("Gojek"),
-                    ),
-                    RadioListTile(
-                      value: "Grab",
-                      groupValue: pilihan,
-                      subtitle: Text(
-                          "Pengantaran akan di lakukan melalui pilihan ini"),
-                      onChanged: (value) {
-                        setState(() {
-                          pilihan = value;
-                        });
-                      },
-                      title: Text("Grab"),
-                    ),
-                    RadioListTile(
-                      value: "Shopee",
-                      subtitle: Text(
-                          "Pengantaran akan di lakukan melalui pilihan ini"),
-                      groupValue: pilihan,
-                      onChanged: (value) {
-                        setState(() {
-                          pilihan = value;
-                        });
-                      },
-                      title: Text("Shopee"),
-                    ),
-                  ],
+                ElevatedButton(
+                  onPressed: () {
+                    _selectTime(context);
+                  },
+                  child: Text(
+                    selected_time == null
+                        ? 'pilih waktu'
+                        : "${selected_time!.hour}: ${selected_time!.minute.toString().padLeft(2, '0')}",
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if (_selectedDate != null && selected_time != null && pilihan != null) {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text("Thank you"),
-                          content:
-                              Text("Please wait while your food is being made"),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CartPage()),
-                                );
-                              },
-                              child: Text("OK"),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-                },
-                child: Text('Selesai'),
-              ),
-            ],
+                SizedBox(height: 40),
+                Container(
+                  child: Column(
+                    children: [
+                      Center(child: Text("Silakan pilih metode pengiriman",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28))),
+                      RadioListTile(
+                        value: "Gojek",
+                        groupValue: pilihan,
+                        subtitle: Text(
+                            "Pengantaran akan di lakukan melalui pilihan ini"),
+                        onChanged: (value) {
+                          setState(() {
+                            pilihan = value;
+                          });
+                        },
+                        title: Text("Gojek"),
+                      ),
+                      RadioListTile(
+                        value: "Grab",
+                        groupValue: pilihan,
+                        subtitle: Text(
+                            "Pengantaran akan di lakukan melalui pilihan ini"),
+                        onChanged: (value) {
+                          setState(() {
+                            pilihan = value;
+                          });
+                        },
+                        title: Text("Grab"),
+                      ),
+                      RadioListTile(
+                        value: "Shopee",
+                        subtitle: Text(
+                            "Pengantaran akan di lakukan melalui pilihan ini"),
+                        groupValue: pilihan,
+                        onChanged: (value) {
+                          setState(() {
+                            pilihan = value;
+                          });
+                        },
+                        title: Text("Shopee"),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_selectedDate != null && selected_time != null && pilihan != null) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Thank you"),
+                            content:
+                                Text("Please wait while your food is being made"),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HomePageFood()),
+                                  );
+                                },
+                                child: Text("OK"),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
+                  child: Text('Selesai'),
+                ),
+              ],
+            ),
           ),
         ),
       ),

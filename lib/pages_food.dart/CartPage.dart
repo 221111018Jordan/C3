@@ -42,7 +42,7 @@ class CartPage extends StatelessWidget {
             if (value.CardList.isEmpty) {
               return Center(
                 child: Text(
-                  "Keranjang Belanja Kosong",
+                  "Keranjang Belanja Food Kosong",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               );
