@@ -27,12 +27,12 @@ class _WalletupState extends State<Walletup> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text("berhasil",textAlign: TextAlign.center,),
+              title: Text("Berhasil",textAlign: TextAlign.center,),
               content: SizedBox(
                   height: 200,
                   width: double.infinity,
                   child: Image.network(
-                      "https://st4.depositphotos.com/25868248/29022/v/1600/depositphotos_290222400-stock-illustration-green-check-mark-icon-checkmark.jpg")),
+                      "https://www.pngitem.com/pimgs/m/508-5084702_checkmark-circle-status-icon-transparent-hd-png-download.png")),
               actions: [
                 TextButton(
                     onPressed: () {

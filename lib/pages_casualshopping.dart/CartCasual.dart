@@ -192,7 +192,13 @@ class CasualCartPage extends StatelessWidget {
                 );
         },
       ),
-      bottomNavigationBar: CartBottomNavbarCasual(),
+      bottomNavigationBar: Container(
+        height: 120,
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: CartBottomNavbarCasual(),
+        ),
+      ),
     );
   }
 }

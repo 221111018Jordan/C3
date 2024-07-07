@@ -4,6 +4,7 @@ import 'package:uas/pages_casualshopping.dart/DetailScreenCasual.dart';
 import 'package:uas/data/cartprovider.dart';
 import 'package:uas/pages_casualshopping.dart/CartCasual.dart';
 import 'package:uas/pages_casualshopping.dart/Drawercasual.dart';
+import 'package:intl/intl.dart'; // Tambahkan ini
 
 class HomePageCasual extends StatefulWidget {
   HomePageCasual({super.key});
@@ -125,6 +126,7 @@ class _HomePageCasualState extends State<HomePageCasual> {
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0); // Format Rupiah tanpa desimal
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -214,7 +216,7 @@ class _HomePageCasualState extends State<HomePageCasual> {
                             Column(
                               children: [
                                 Text(
-                                  e['harga'].toString(),
+                                  formatCurrency.format(e['harga']),
                                   style: TextStyle(
                                     color: Colors.pink,
                                     fontSize: 12,

@@ -54,18 +54,22 @@ class _AccountPageState extends State<AccountPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Tooltip(
-                          message: 'Foto Profil',
-                          child: CircleAvatar(
-                            child: SizedBox(
-                              child: 
-                              _imagePath == null
-                                  ? null
-                                  : Image.file(
-                                      File(_imagePath!),
-                                    ),
-                            ),
-                          )),
+                      SizedBox(
+                        height: 100,
+                        width: 100,
+                        child: Tooltip(
+                            message: 'Foto Profil',
+                            child: CircleAvatar(
+                              child: SizedBox(
+                                child: 
+                                _imagePath == null
+                                    ? null
+                                    : Image.file(
+                                        File(_imagePath!),
+                                      ),
+                              ),
+                            )),
+                      ),
                       Column(
                         children: [
                           Text(
@@ -291,6 +295,7 @@ class _AccountPageState extends State<AccountPage> {
                               ),
                               Row(
                                 children: [
+                                  Spacer(),
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context).pop();
@@ -339,34 +344,37 @@ class _AccountPageState extends State<AccountPage> {
                           isScrollControlled: true,
                           builder: (context) {
                             return Container(
-                              height: 300,
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 24),
-                                  Text(
-                                      "This is our project together, containing personal data of each member"),
-                                  ListTile(
-                                    leading: Icon(Icons.person),
-                                    title: Text("NAME: Jordan"),
-                                    subtitle: Text("NIM: 221111018"),
-                                  ),
-                                  ListTile(
-                                    leading: Icon(Icons.person),
-                                    title: Text("NAME: Sanjaya Citra"),
-                                    subtitle: Text("NIM: 221111926"),
-                                  ),
-                                  ListTile(
-                                    leading: Icon(Icons.person),
-                                    title: Text("NAME: Venderson Egy Agatran"),
-                                    subtitle: Text("NIM: 221110627"),
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text("Close"),
-                                  ),
-                                ],
+                              height: 400,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 50),
+                                    Text(
+                                        "This is our project together, containing personal data of each member"),
+                                    ListTile(
+                                      leading: Icon(Icons.person),
+                                      title: Text("NAME: Jordan"),
+                                      subtitle: Text("NIM: 221111018"),
+                                    ),
+                                    ListTile(
+                                      leading: Icon(Icons.person),
+                                      title: Text("NAME: Sanjaya Citra"),
+                                      subtitle: Text("NIM: 221111926"),
+                                    ),
+                                    ListTile(
+                                      leading: Icon(Icons.person),
+                                      title: Text("NAME: Venderson Egy Agatran"),
+                                      subtitle: Text("NIM: 221110627"),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text("Close"),
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },

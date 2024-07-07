@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/cartprovider.dart';
+import 'package:intl/intl.dart'; // Tambahkan ini
 
 class DetailScreenCasual extends StatefulWidget {
   final Map<String, dynamic> item;
@@ -24,6 +25,8 @@ class _DetailScreenCasualState extends State<DetailScreenCasual> {
 
   @override
   Widget build(BuildContext context) {
+    final formatCurrency = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0); // Format Rupiah tanpa desimal
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.item['title']),
@@ -78,7 +81,7 @@ class _DetailScreenCasualState extends State<DetailScreenCasual> {
                       style: TextStyle(fontSize: 18, color: Colors.grey),
                     ),
                     Text(
-                      'Price: ${widget.item['harga']}',
+                      'Price: ${formatCurrency.format(widget.item['harga'])}',
                       style: TextStyle(fontSize: 18, color: Colors.green),
                     ),
                   ],
