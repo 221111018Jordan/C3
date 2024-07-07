@@ -11,6 +11,7 @@ class DateScreen extends StatefulWidget {
 
 class _DateScreenState extends State<DateScreen> {
   DateTime? _selectedDate;
+  String? pilihan;
 
   void _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
@@ -87,34 +88,81 @@ class _DateScreenState extends State<DateScreen> {
                 ),
               ),
               SizedBox(height: 40),
+              Container(
+                child: Column(
+                  children: [
+                    Center(child: Text("Silakan pilih metode pengiriman",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28))),
+                    RadioListTile(
+                      value: "Gojek",
+                      groupValue: pilihan,
+                      subtitle: Text(
+                          "Pengantaran akan di lakukan melalui pilihan ini"),
+                      onChanged: (value) {
+                        setState(() {
+                          pilihan = value;
+                        });
+                      },
+                      title: Text("Gojek"),
+                    ),
+                    RadioListTile(
+                      value: "Grab",
+                      groupValue: pilihan,
+                      subtitle: Text(
+                          "Pengantaran akan di lakukan melalui pilihan ini"),
+                      onChanged: (value) {
+                        setState(() {
+                          pilihan = value;
+                        });
+                      },
+                      title: Text("Grab"),
+                    ),
+                    RadioListTile(
+                      value: "Shopee",
+                      subtitle: Text(
+                          "Pengantaran akan di lakukan melalui pilihan ini"),
+                      groupValue: pilihan,
+                      onChanged: (value) {
+                        setState(() {
+                          pilihan = value;
+                        });
+                      },
+                      title: Text("Shopee"),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               ElevatedButton(
                 onPressed: () {
-                  if(_selectedDate != null && selected_time != null){
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text("Thank you"),
-                        content:
-                            Text("Please wait while your food is being made"),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CartPage()),
-                              );
-                            },
-                            child: Text("OK"),
-                          ),
-                        ],
-                      );
-                    },
-                  );}
+                  if (_selectedDate != null && selected_time != null && pilihan != null) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text("Thank you"),
+                          content:
+                              Text("Please wait while your food is being made"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CartPage()),
+                                );
+                              },
+                              child: Text("OK"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
                 },
                 child: Text('Selesai'),
-              )
+              ),
             ],
           ),
         ),
