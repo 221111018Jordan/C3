@@ -35,7 +35,19 @@ class WishList extends StatelessWidget {
             ),
           ],
         ),
-        body: SingleChildScrollView(
+        body: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Consumer<FoodListManager>(builder: (context, value, child) {
+                  if (value.WishList.isEmpty) {
+                    return Center(
+                      child: Text(
+                        "Wishlist Belanja Kosong",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    );
+                  }
+        return SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -217,8 +229,11 @@ class WishList extends StatelessWidget {
               )
             ],
           ),
-        ),
-      ),
+        );
+                }
+      )
+      )
+      )
     );
   }
 }

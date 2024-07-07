@@ -94,7 +94,7 @@ class _DetailScreenCasualState extends State<DetailScreenCasual> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.only(top: 10,bottom: 10,left: 5,right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

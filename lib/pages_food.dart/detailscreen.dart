@@ -95,7 +95,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.only(top: 10,bottom: 10,left: 5,right: 5),
                   child: Column(
                     children: [
                       Row(
@@ -124,21 +124,24 @@ class _DetailScreenState extends State<DetailScreen> {
                                   context.read<FoodListManager>().removeWish(widget.data);
                                 }
                               },
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.favorite,
-                                    color: isFavorite ? Colors.red : Colors.grey,
-                                    size: 26,
-                                  ),
-                                  const SizedBox(width: 5),
-                                  Text(
-                                    isFavorite ? 'Remove from Wishlist' : 'Add to Wishlist',
-                                    style: TextStyle(
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 5),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.favorite,
                                       color: isFavorite ? Colors.red : Colors.grey,
+                                      size: 20,
                                     ),
-                                  ),
-                                ],
+                                    const SizedBox(width: 2),
+                                    Text(
+                                      isFavorite ? 'Remove from Wishlist' : 'Add to Wishlist',
+                                      style: TextStyle(
+                                        color: isFavorite ? Colors.red : Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                               style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -149,7 +152,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 20),
+                          const SizedBox(width: 5),
                           Tooltip(
                             message: 'Tambahkan Ke Keranjang',
                             child: ElevatedButton(
@@ -179,9 +182,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                     Icon(
                                       Icons.shopping_cart,
                                       color: isInCart ? Colors.red : Colors.grey,
-                                      size: 26,
+                                      size: 20,
                                     ),
-                                    const SizedBox(width: 5),
+                                    const SizedBox(width: 2),
                                     Text(
                                       isInCart ? 'Remove from Cart' : 'Add to Cart',
                                       style: TextStyle(
