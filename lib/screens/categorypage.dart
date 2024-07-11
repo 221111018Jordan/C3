@@ -7,17 +7,17 @@ import 'package:uas/widget/CategoriesWidget.dart';
 class CategoryPage extends StatelessWidget {
   CategoryPage({super.key});
 
-  final List<String> content = [
-    "https://i.pinimg.com/564x/74/03/f8/7403f86b3875302f2ba2dd790b4a8e01.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrVj6r2_M_nyQYFPuTzuF_6Zf6FaSAekfZOwuBLreAFQ&s",
-    "https://areioutdoorgear.co.id/wp-content/uploads/2023/03/WhatsApp-Image-2023-03-09-at-15.47.34-1.jpeg",
-    "https://cutoff.id/cdn/shop/files/ICEWASHEDBLUE.jpg?v=1686984909",
-    "https://areioutdoorgear.co.id/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-01-at-13.38.59.jpeg",
-    "https://contents.mediadecathlon.com/p2137351/k348eebdd745c6f2531cf465fe8dd91a1/men-s-mountain-trekking-durable-shorts-mt500.jpg?format=auto&quality=70&f=768x768",
-    "https://down-id.img.susercontent.com/file/id-11134207-7qul1-lke0437zzk8a3f",
-    "https://down-id.img.susercontent.com/file/id-11134207-7qul1-lhx5e3hvkzckd6",
-    "https://cdn.eraspace.com/media/catalog/product/a/p/apple_iphone_15_pro_max_natural_titanium_1_1_2.jpg",
-  ];
+  // final List<String> content = [
+  //   "https://i.pinimg.com/564x/74/03/f8/7403f86b3875302f2ba2dd790b4a8e01.jpg",
+  //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrVj6r2_M_nyQYFPuTzuF_6Zf6FaSAekfZOwuBLreAFQ&s",
+  //   "https://areioutdoorgear.co.id/wp-content/uploads/2023/03/WhatsApp-Image-2023-03-09-at-15.47.34-1.jpeg",
+  //   "https://cutoff.id/cdn/shop/files/ICEWASHEDBLUE.jpg?v=1686984909",
+  //   "https://areioutdoorgear.co.id/wp-content/uploads/2023/06/WhatsApp-Image-2023-06-01-at-13.38.59.jpeg",
+  //   "https://contents.mediadecathlon.com/p2137351/k348eebdd745c6f2531cf465fe8dd91a1/men-s-mountain-trekking-durable-shorts-mt500.jpg?format=auto&quality=70&f=768x768",
+  //   "https://down-id.img.susercontent.com/file/id-11134207-7qul1-lke0437zzk8a3f",
+  //   "https://down-id.img.susercontent.com/file/id-11134207-7qul1-lhx5e3hvkzckd6",
+  //   "https://cdn.eraspace.com/media/catalog/product/a/p/apple_iphone_15_pro_max_natural_titanium_1_1_2.jpg",
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -96,14 +96,13 @@ class CategoryPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          CarouselSlider(
-            items: content.map((imageUrl) {
-              return Builder(
+          CarouselSlider(items: allData().map((e){return Builder(
                 builder: (BuildContext context) {
                   return Tooltip(
                     message: 'Cek Barang ',
                     child: GestureDetector(
                       onTap: () {
+                        // if (e == content[_currentIndex]['contents'][_currentBottomIndex]['data'])
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => HomePageCasual(),
@@ -115,7 +114,7 @@ class CategoryPage extends StatelessWidget {
                         margin: const EdgeInsets.symmetric(horizontal: 5.0),
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: NetworkImage(imageUrl),
+                            image: NetworkImage(e['cover']),
                             fit: BoxFit.contain,
                           ),
                         ),
@@ -123,16 +122,13 @@ class CategoryPage extends StatelessWidget {
                     ),
                   );
                 },
-              );
-            }).toList(),
-            options: CarouselOptions(
+              );}).toList(), options: CarouselOptions(
               height: 300,
               autoPlay: true,
               enlargeCenterPage: true,
               aspectRatio: 16 / 9,
               viewportFraction: 0.8,
-            ),
-          ),
+            ),),
         ],
       ),
       floatingActionButton: Container(

@@ -6,14 +6,6 @@ import 'package:uas/pages_casualshopping.dart/CartCasual.dart';
 import 'package:uas/pages_casualshopping.dart/Drawercasual.dart';
 import 'package:intl/intl.dart'; // Tambahkan ini
 
-class HomePageCasual extends StatefulWidget {
-  HomePageCasual({super.key});
-
-  @override
-  State<HomePageCasual> createState() => _HomePageCasualState();
-}
-
-class _HomePageCasualState extends State<HomePageCasual> {
   List<Map<String, dynamic>> content = [
     {
       "screen": "Casual Shopping",
@@ -121,8 +113,32 @@ class _HomePageCasualState extends State<HomePageCasual> {
     return [];
   }
 
+  
+List<dynamic> allData() {
+  List<dynamic> allDataList = [];
+
+  for (var screen in content) {
+    for (var tab in screen['contents']) {
+      if (tab['data'].length > 0) {
+        allDataList.addAll(tab['data']);
+      }
+    }
+  }
+
+  return allDataList;
+}
+
   int _currentIndex = 0;
   int _currentBottomIndex = 0;
+
+class HomePageCasual extends StatefulWidget {
+  HomePageCasual({super.key});
+
+  @override
+  State<HomePageCasual> createState() => _HomePageCasualState();
+}
+
+class _HomePageCasualState extends State<HomePageCasual> {
 
   @override
   Widget build(BuildContext context) {
