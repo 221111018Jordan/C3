@@ -30,7 +30,7 @@ class _CartBottomNavbarState extends State<CartBottomNavbar> {
                   "Total",
                   style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 15),
+                SizedBox(width: 10),
                 Consumer<FoodListManager>(
                   builder: (context, value, child) {
                     final formatter = NumberFormat.currency(
@@ -41,7 +41,7 @@ class _CartBottomNavbarState extends State<CartBottomNavbar> {
                     return Text(
                       "Checkout \n${formatter.format(value.totalPrice)}",
                       style: TextStyle(
-                        fontSize: 19,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                         color: Colors.red,
                       ),

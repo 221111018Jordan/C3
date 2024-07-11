@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:uas/data/cartprovider.dart';
 import 'package:uas/widget/CardBottomNavbarCasual.dart';
+import 'package:intl/intl.dart';
 
 class CasualCartPage extends StatelessWidget {
   CasualCartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final currencyFormatter = NumberFormat.currency(locale: 'en_US', symbol: 'Rp ',decimalDigits: 0);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Casual Shopping Cart'),
@@ -104,7 +107,7 @@ class CasualCartPage extends StatelessWidget {
                                           ),
                                           const SizedBox(height: 20),
                                           Text(
-                                            "Price: ${item['harga']}",
+                                            "Price: ${currencyFormatter.format(item['harga'])}",
                                             style: const TextStyle(
                                               fontSize: 15,
                                             ),

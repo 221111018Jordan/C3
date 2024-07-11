@@ -31,7 +31,7 @@ class _CartBottomNavbarCasualState extends State<CartBottomNavbarCasual> {
                   "Total",
                   style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 15),
+                SizedBox(width: 10),
                 Consumer<CartProvider>(
                   builder: (context, cartProvider, child) {
                     double totalPrice = 0;
@@ -43,7 +43,7 @@ class _CartBottomNavbarCasualState extends State<CartBottomNavbarCasual> {
                     return Text(
                       "Checkout \n${formatCurrency.format(totalPrice)}",
                       style: TextStyle(
-                        fontSize: 19,
+                        fontSize: 15,
                         fontWeight: FontWeight.bold,
                         color: Colors.red,
                       ),
